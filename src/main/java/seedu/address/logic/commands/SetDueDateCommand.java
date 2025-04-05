@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_NO_TASK_FOR_MEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DUE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -64,10 +65,8 @@ public class SetDueDateCommand extends Command {
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());
         List<Task> updatedTasks = new ArrayList<>(personToEdit.getTasks());
 
-        if (taskIndex.getZeroBased() >= updatedTasks.size()) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
-                    taskIndex.getOneBased()));
-        }
+        // Check if task index inputted is valid.
+        checkTaskIndex(updatedTasks, personToEdit);
 
         // Update the due date for the specified task.
         Task taskToUpdate = updatedTasks.get(taskIndex.getZeroBased());
@@ -107,6 +106,15 @@ public class SetDueDateCommand extends Command {
         String formattedDueDate = dueDate.format(displayFormatter);
 
         return formattedDueDate;
+    }
+
+    private void checkTaskIndex(List<Task> oldTaskList, Person person) throws CommandException {
+        if (oldTaskList.size() == 0) {
+            throw new CommandException(String.format(MESSAGE_NO_TASK_FOR_MEM, person.getName()));
+        } else if (taskIndex.getZeroBased() >= oldTaskList.size()) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX,
+                    taskIndex.getOneBased()));
+        }
     }
 
     @Override
