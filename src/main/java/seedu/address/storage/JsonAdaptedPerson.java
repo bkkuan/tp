@@ -175,7 +175,7 @@ class JsonAdaptedPerson {
         final Set<Skill> modelSkills = new HashSet<>(personSkills);
         final Set<Other> modelOthers = new HashSet<>(personOthers);
         // Provide a default task status string, e.g., "not started"
-        String defaultTaskStatus = "not started";
+        String defaultTaskStatus = "yet to start";
         return new Person(modelName, modelPhone, modelEmail, modelTelegram, modelPosition, modelAddress, modelTags,
                 modelSkills, modelOthers, defaultTaskStatus, personTasks);
     }
