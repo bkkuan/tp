@@ -830,9 +830,9 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `updatetask 3 2 project milestone 1 sprint, 2025-05-12 10:00, in progress` <br>
 **Expected**:
    - Third task of second person updated as completed from its previous state. 
-   - Successful message to confirms update and shows new task details.
+   - Successful message to confirm update and shows new task details.
 
-3Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
+3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
    **Expected**:
     - No change to the specified task
     - Error message shows specific error.
