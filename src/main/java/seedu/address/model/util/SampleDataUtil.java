@@ -82,7 +82,7 @@ public class SampleDataUtil {
                     getTagSet("colleagues"),
                     getSkillSet(""),
                     getOtherSet(""),
-                    "not started",
+                    "yet to start",
                     emptyTaskList),
         };
     }
