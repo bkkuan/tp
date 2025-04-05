@@ -6,7 +6,7 @@
 
 # TeamScape User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
+TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3. 
 
 <!-- * Table of Contents -->
 ## Table of Contents
@@ -43,7 +43,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks
 
 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TeamScape.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -187,7 +187,7 @@ Format: `setduedate PERSON_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`
 * Due date must be inputted in the format of `yyyy-mm-dd hh:mm`.
 * Due date cannot be in the past.
 * If due date is already set as such, user will be notified gracefully.
-* Special case for February: set to the last day of that year if user types in 29th Feb during a non-leap year.
+* Special case for some months having different last date: set to the last day of that month if user types in a date more than the valid date of that month (e.g. 29th Feb during a non-leap year -> set to 28th Feb and notify user by printing the set date on the GUI).
 
 Examples:
 * `setduedate 2 taskint/1 due/2026-02-29 23:59`
