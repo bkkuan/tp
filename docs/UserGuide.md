@@ -13,15 +13,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks
 1. [Quick Start](#quick-start)
 2. [Features](#features)
     - [Viewing Help](#viewing-help--help)
-    - [Adding a Person](#adding-a-person--add)
-    - [Adding a Task to a Member](#adding-a-task-to-a-member--task)
+    - [Adding a Person](#adding-a-person-add)
+    - [Adding a Task to a Member](#adding-a-task-to-a-member-task)
     - [Listing All Persons](#listing-all-persons--list)
     - [Editing a Person](#editing-a-person--edit)
     - [Setting Due Date for a Task](#setting-due-date-for-a-task--setduedate)
     - [Listing Tasks Assigned to a Member](#listing-tasks-assigned-to-a-member--listtasks)
     - [Deleting a Task Under a Member](#deleting-a-task-under-a-member--deltask)
     - [Updating Status for a Task](#updating-status-for-a-task--mark)
-    - [Locating Persons by Name, Tags, or Tasks](#locating-persons-by-name-tags-or-tasks--find)
+    - [Locating Persons by Name, Tags, or Tasks](#locating-persons-by-name-tags-or-tasks-find)
     - [Generate Task Status Report](#generate-task-status-report--report)
     - [Deleting a Person](#deleting-a-person--delete)
     - [Clearing All Entries](#clearing-all-entries--clear)
@@ -77,7 +77,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Parameters can be in any order, unless specified by the particular command.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -89,22 +89,23 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
 
-### Adding a person: `add` 
+### Adding a person: `add`
 
 Adds a person to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`
 
-**Note:** Task can have no due date and status (ie task/barbeque or task/barbeque, 2025-05-28 14:00 or task/barbeque, in progress) the default status would be yet to start.
-
-**Tip:** A person can have any number of tags, skills, others and tasks (including 0). See "Adding a task to a member" section for more information regarding task creation.
+**Note:** 
+- Task can have no due date and status (ie task/barbeque or task/barbeque, 2025-05-28 14:00 or task/barbeque, in progress) the default status would be yet to start.
+- Repeated names are treated as the same person, regardless of case or other details, and will not be added again. 
+- A person can have any number of tags, skills, others and tasks (including 0). See "Adding a task to a member" section for more information regarding task creation.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street, block 123, #01-01 task/barbeque, 2025-05-28 14:00, yet to start`
@@ -118,20 +119,32 @@ Examples:
 
 Adds a task to the specified member.
 
-Format: `task INDEX task/[TASK_DESCRIPTION, YYYY-MM-DD HH:mm, TASK_STATUS]`
+Format: `task PERSON_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
 
-- INDEX: Index of the person in the displayed list.
-- TASK_STATUS can be one of: `yet to start`, `in progress`, `completed`.
-- Date and status are optional. If omitted, status defaults to `yet to start`.
+**Note:**
+- Task description is mandatory.
+- Task Status can be one of: `yet to start`, `in progress`, `completed`.
+- Date and task status are optional. If omitted, status defaults to `yet to start`.
+- All task details must be separated by commas `,` in the correct order: description, due date (if any), 
+and then status (if any).
+- There can only exist 1 task with a unique task description. 
+In other words, another task with the same description cannot be added.
 - There can only exist 1 `task/` prefix for each TaskCommand to be added.
+- When only 1 task field is provided (e.g. `completed`), and it matches with a valid task status or due date format, 
+it will be interpreted strictly as such regardless of the intention.
+
+**Limitations:**
+- When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of
+  input standardisation.
+- When there exists multiple errors with the command input by the user, the error message will only show up one by one at a time.
+
+**Related:**
 - See "Setting due date for a task" section for more information on due dates.
 
 Examples:
 * `task 3 task/Prepare report, 2025-10-10 10:00, in progress`
 * `task 3 task/Book venue`
-  ![taskBetsyFullCommand.png](images/taskBetsyFullCommand.png)
-
-  ![taskBerniceTaskDescOnly.png](images/taskBerniceTaskDescOnly.png)
+  ![taskBasilFullCommand.jpeg](images/taskBasilFullCommand.jpeg)
 
 
 ### Listing all persons : `list`
@@ -220,22 +233,42 @@ Examples:
 * ![output for `deltask 3 2`](images/deltaskOutput.png)
 
 
-### Updating status for a task : `mark`
+### Updating a task under a member : `updatetask`
 
-Mark the task status for a specific task of a member.
+Update a specific task of a member. 
 
-Format: `mark PERSON_INDEX TASK_INDEX task_status`
+You may update the description, due date, and/or status.
 
-* Update the task status of a task at `TASK_INDEX` of the person at the specified `PERSON_INDEX`.
-* `TASK_INDEX` refers to the index number shown in the task list of a member.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
-* Only valid inputs are only `yet-to-start`, `in-progress` and `completed`.
+Format: `updatetask PERSON_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
 
-Examples:
-* `listtasks 2` followed by `mark 3 2 in-progress` sets the task status for the second task of the third person in the displayed person list to be **in-progress**.
-* `find n/ Betsy` followed by `mark 2 1 completed` sets the task status for the first task of the second person in the results of the `find` command to be **completed**.
-![mark a task in progress](images/markTaskResult.png)
+**Note:**
+- Task parameters must be separated by commas (`,`).
+- Task order matters, from top to bottom:
+    - **Description** _(if any)_
+    - **Due Date** *(if any)* – Format: `yyyy-MM-dd HH:mm`
+    - **Status** *(if any)* – One of: `yet to start`, `in progress`, `completed` (case-insensitive)
 
+**Limitations:**
+- When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of 
+input standardisation.
+- When there exists multiple errors with the command input by the user, the error message will only show up one by one at a time.
+
+**Examples: (all possible combinations)**
+- `updatetask 1 2 Fix backend bug`
+  Updates only the task description.
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00`  
+  Updates the task description and due date.
+- `updatetask 1 2 2025-12-12 23:59, completed`
+  Updates the due date and status.
+- `updatetask 1 2 completed`
+  Updates only the task status.
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00, completed`  
+  Updates all three fields.
+
+**Extended Example**:
+* `listtasks 2` followed by `updatetask 3 2 in progress` sets the task status for the second task of the third person in the displayed person list to be **in progress**.
+![updatetaskBetsy_taskdesc&duedate.jpeg](images/updatetaskBetsy_taskdesc%26duedate.jpeg)
+![updatetaskBetsy_duedate&taskstatus.jpeg](images/updatetaskBetsy_duedate%26taskstatus.jpeg)
 
 ### Locating persons by name, tags, or tasks: `find`
 
@@ -296,6 +329,12 @@ Shows a summary of all tasks and their completion statuses.
 
 * Users are associated with their tasks under their status
 * report command is case-insensitive
+* The report is divided into three sections: ‘Yet to Start’, ‘In Progress’, and ‘Completed’
+* The number in parentheses next to each task status represents how many person have tasks in that status.
+* Under each task status, the names of the person are listed, followed by their assigned tasks in parentheses
+* If a person has multiple tasks, they are displayed in the order the tasks were added
+* For example, if Bryan first received the task 'Sleep' and later received the task 'Swim', the report will show:
+Bryan (Sleep, Swim), indicating that 'Sleep' was assigned first, followed by 'Swim'
 
 Format: `report`
 
@@ -361,6 +400,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+3. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -374,11 +414,11 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                  |
 | **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                      |
 | **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`                                                                                                                                                                                              |
-| **Add Task**     | `task INDEX task/TASK_DESCRIPTION[, yyyy-MM-dd HH:mm, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                               |
+| **Add Task**     | `task INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                                       |
 | **Delete task**  | `deltask PERSON_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                             |
+| **Update Task**  | `updatetask PERSON_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                             |
 | **List**         | `list`                                                                                                                                                                                                                                                                |
 | **List Tasks**   | `listtasks INDEX`<br> e.g., `listtasks 2`                                                                                                                                                                                                                             |
-| **Mark Task**    | `mark PERSON_INDEX TASK_INDEX task_status`<br> e.g., `mark 3 2 in-progress`                                                                                                                                                                                           |
 | **Set Due Date** | `setduedate PERSON_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`<br> e.g., `setduedate 2 taskint/1 due/2025-10-10 23:59`                                                                                                                                             |
 | **Report**       | `report`                                                                                                                                                                                                                                                              |
 | **Help**         | `help`                                                                                                                                                                                                                                                                |

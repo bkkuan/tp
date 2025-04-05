@@ -35,6 +35,16 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not an integer greater zero.";
+    public static final String MESSAGE_STATUS_AS_DESCRIPTION =
+        "Looks like you tried to supply a task status ('%s') in the description field.\n"
+            + "Use a comma to separate them:\n"
+            + "e.g., task/TASK_DESCRIPTION, %s";
+
+    public static final String MESSAGE_DATE_AS_DESCRIPTION =
+        "Looks like you tried to supply a due date ('%s') in the description field.\n"
+            + "Use a comma to separate them:\n"
+            + "e.g., task/TASK_DESCRIPTION, %s";
+
     private static final DateTimeFormatter INPUT_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
@@ -240,15 +250,29 @@ public class ParserUtil {
             || normalizedTaskDesc.equals("in progress")
             || normalizedTaskDesc.equals("yet to start")) {
             throw new ParseException(
-                "It looks like you tried to supply a status ('" + taskDesc.trim() + "') in the description field.\n"
-                    + "Use a comma to separate them:\n"
-                    + "e.g., task/Do something, " + taskDesc.trim());
+                String.format(MESSAGE_STATUS_AS_DESCRIPTION, taskDesc.trim(), taskDesc.trim()));
         }
+
+        try {
+            LocalDateTime.parse(taskDesc.trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            throw new ParseException(
+                String.format(MESSAGE_DATE_AS_DESCRIPTION, taskDesc.trim(), taskDesc.trim()));
+        } catch (DateTimeParseException e) {
+            // Not a valid due date, continue
+        }
+
         return new Task(taskDesc, TaskStatus.YET_TO_START, null);
     }
 
     private static Task parseTwoVariableTask(String taskDesc, String secondParameter) throws ParseException {
         validateTaskDescription(taskDesc);
+        try {
+            LocalDateTime.parse(taskDesc.trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            throw new ParseException(String.format(MESSAGE_DATE_AS_DESCRIPTION, taskDesc.trim(), taskDesc.trim()));
+        } catch (DateTimeParseException ignored) {
+            // not a date, continue
+        }
+
         try {
             TaskStatus taskStatus = TaskStatus.fromString(secondParameter);
             return new Task(taskDesc, taskStatus, null);
@@ -256,7 +280,7 @@ public class ParserUtil {
             try {
                 LocalDateTime dueDate = parseAndValidateDueDate(secondParameter);
                 return new Task(taskDesc, TaskStatus.YET_TO_START, dueDate);
-            } catch (DateTimeParseException | ParseException e1) {
+            } catch (DateTimeParseException e1) {
                 throw new ParseException(MESSAGE_INCORRECT_DATE_FORMAT);
             }
         }
@@ -372,14 +396,17 @@ public class ParserUtil {
      * @throws ParseException if format is wrong or date is in the past.
      */
     public static LocalDateTime parseAndValidateDueDate(String dueDateString) throws ParseException {
+        LocalDateTime dueDate;
         try {
-            LocalDateTime dueDate = LocalDateTime.parse(dueDateString.trim(), INPUT_FORMATTER);
-            if (dueDate.isBefore(LocalDateTime.now())) {
-                throw new ParseException("Due date is in the past!");
-            }
-            return dueDate;
+            dueDate = LocalDateTime.parse(dueDateString.trim(), INPUT_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INCORRECT_DATE_FORMAT);
         }
+
+        if (dueDate.isBefore(LocalDateTime.now())) {
+            throw new ParseException("Due date is in the past!");
+        }
+
+        return dueDate;
     }
 }
