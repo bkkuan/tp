@@ -120,7 +120,7 @@ public class SetDueDateCommand extends Command {
     private void checkDueDateValidity(Task taskToUpdate) throws CommandException {
         if (taskToUpdate.getDueDate() != null && taskToUpdate.getDueDate().equals(dueDate)) {
             throw new CommandException(String.format("Your due date is already: %s", formatDueDate()));
-        } else if (dueDate.isBefore(LocalDateTime.now()) && taskToUpdate.getStatus() != TaskStatus.COMPLETED) {
+        } else if (dueDate.isBefore(LocalDateTime.now()) && !taskToUpdate.getStatus().equals(TaskStatus.COMPLETED)) {
             throw new CommandException("Due date is in the past!");
         }
     }

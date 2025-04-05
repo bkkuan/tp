@@ -50,12 +50,6 @@ public class SetDueDateCommandParserTest {
     }
 
     @Test
-    public void parse_pastDate_throwsParseException() {
-        String userInput = "1 " + PREFIX_TASK_INDEX + "2 " + PREFIX_DUE_DATE + "2023-03-30 14:00";
-        assertThrows(ParseException.class, () -> parser.parse(userInput));
-    }
-
-    @Test
     public void parse_incorrectPrefix_throwsParseException() {
         String userInput = "1 " + "/taskint" + "2 " + PREFIX_DUE_DATE + "2026-03-30 14:00";
         assertThrows(ParseException.class, () -> parser.parse(userInput));
