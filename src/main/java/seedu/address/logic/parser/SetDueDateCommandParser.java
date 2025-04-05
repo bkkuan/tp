@@ -26,9 +26,8 @@ public class SetDueDateCommandParser implements Parser<SetDueDateCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_TASK_INDEX, PREFIX_DUE_DATE);
 
-        if (argMultimap.getSize() < 3) {
-            throw new ParseException(MESSAGE_INCORRECT_PREFIX + "\n" + SetDueDateCommand.MESSAGE_USAGE);
-        }
+        // Check for errors such as wrong prefix or missing prefix
+        checkArgLength(argMultimap);
 
         Index taskIndex;
         Index personIndex;
@@ -46,10 +45,7 @@ public class SetDueDateCommandParser implements Parser<SetDueDateCommand> {
         }
 
         // handles where PREFIX_DUE_DATE is not present
-        if (!argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDueDateCommand.MESSAGE_USAGE));
-        }
+        checkDueDatePresence(argMultimap);
 
         // handles parsing date
         try {
@@ -59,5 +55,18 @@ public class SetDueDateCommandParser implements Parser<SetDueDateCommand> {
         }
 
         return new SetDueDateCommand(dueDate, taskIndex, personIndex);
+    }
+
+    private static void checkArgLength(ArgumentMultimap argMultimap) throws ParseException {
+        if (argMultimap.getSize() < 3) {
+            throw new ParseException(MESSAGE_INCORRECT_PREFIX + "\n" + SetDueDateCommand.MESSAGE_USAGE);
+        }
+    }
+
+    private static void checkDueDatePresence(ArgumentMultimap argMultimap) throws ParseException {
+        if (!argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetDueDateCommand.MESSAGE_USAGE));
+        }
     }
 }
