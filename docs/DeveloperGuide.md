@@ -603,15 +603,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Manager requests to generate tasks report.
-2.  TeamScape generate tasks report and show.
+1.  Manager requests to generate tasks status report.
+2.  TeamScape generate tasks status report and show.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Empty task list
-    * 2a1. TeamScape shows an error message.
+    * 2a1. TeamScape shows a No Task Found message.
 
       Use case ends.
 
@@ -671,7 +671,7 @@ Based on the latest implementation of TeamScape:
 - **Storage**: Component that saves/loads data to/from the hard drive.
 - **API**: Application Programming Interface. How components interact (e.g., `Logic.java` defines the API for executing commands).
 - **JSON**: A file format used to store data (e.g., team members are saved in `addressbook.json`).
-- **AddressBook**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
+- **TeamScape**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
 - **Displayed person list**: The current list of persons displayed to users by GUI; could be a result of `list` or `find` command.
 
 
