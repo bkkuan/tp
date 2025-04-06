@@ -56,10 +56,11 @@ public class ReportCommand extends Command {
             }
         }
 
+        // If all task lists are empty, then no tasks exist.
         if (completedTasks.isEmpty() && inProgressTasks.isEmpty() && yetToStartTasks.isEmpty()) {
             return new CommandResult(MESSAGE_NO_TASKS);
         }
-        
+
         return new CommandResult(MESSAGE_SUCCESS, completedTasks, inProgressTasks, yetToStartTasks);
     }
 }
