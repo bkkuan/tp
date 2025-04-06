@@ -377,14 +377,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `manager`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeamScape` and the **Actor** is the `manager`, unless specified otherwise)
 
 **Use case: UC1 List members**
 
 **MSS**
 
 1.  Manager requests to list members
-2.  AddressBook shows a list of members
+2.  TeamScape shows a list of members
 
 **Extensions**
 
@@ -397,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to list tasks.
-2.  AddressBook shows a list of tasks.
+2.  TeamScape shows a list of tasks.
 
 **Extensions**
 
@@ -411,7 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager requests to delete a specific member in the list
-3.  AddressBook deletes the member
+3.  TeamScape deletes the member
 
     Use case ends.
 
@@ -419,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -429,7 +429,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager requests to edit a specific member in the list
-3.  AddressBook edits the member
+3.  TeamScape edits the member
 
     Use case ends.
 
@@ -437,13 +437,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. Edit command received invalid inputs.
 
-    * 3b1. AddressBook shows an error message
+    * 3b1. TeamScape shows an error message
 
       Use case resumes at step 2.
 
@@ -452,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to add a member to the list
-2.  AddressBook adds the member
+2.  TeamScape adds the member
 
     Use case ends.
 
@@ -460,7 +460,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The details provided are invalid.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 1.
 
@@ -471,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager <ins>list tasks (UC2)</ins>.
 3.  Manager requests to add a task under a member.
-4.  AddressBook adds a task under a member.
+4.  TeamScape adds a task under a member.
 
     Use case ends.
 
@@ -479,13 +479,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The given index for either task is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 4b. The given index for either member is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -496,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager <ins>list tasks (UC2)</ins>.
 3.  Manager requests to change a task under a member.
-4.  AddressBook changes a task under a member.
+4.  TeamScape changes a task under a member.
 
     Use case ends.
 
@@ -504,13 +504,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The given index for either task is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 4b. The given index for either member is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -519,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Manager requests to create a task.
-2. AddressBook creates a task.
+2. TeamScape creates a task.
 
    Use case ends.
 
@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Invalid task input.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -537,7 +537,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Manager <ins>list tasks (UC2)</ins>.
 2. Manager requests to set a due date for a task.
-3. AddressBook set a due date for a task.
+3. TeamScape set a due date for a task.
 
    Use case ends.
 
@@ -545,13 +545,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given task index is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The due date format is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -561,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list tasks (UC2)</ins>.
 2.  Manager requests to set a due date for a task.
-3.  AddressBook set a due date for a task.
+3.  TeamScape set a due date for a task.
 
     Use case ends.
 
@@ -569,13 +569,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given task index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The due date format is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -584,19 +584,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to find the member by name.
-2.  AddressBook finds the member.
+2.  TeamScape finds the member.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Empty member list
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case ends.
 
 * 2b. No member of the name found.
-    * 2b1. AddressBook shows an error message.
+    * 2b1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -604,15 +604,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  Manager requests to generate tasks report.
-2.  AddressBook generate tasks report and show.
+1.  Manager requests to generate tasks status report.
+2.  TeamScape generate tasks status report and show.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Empty task list
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows a No Task Found message.
 
       Use case ends.
 
@@ -621,24 +621,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to get help.
-2.  AddressBook prompts manager.
+2.  TeamScape prompts manager.
 3.  Manager input a prompt.
-4.  AddressBook shows user guide.
+4.  TeamScape shows user guide.
     Steps 3 and 4 are repeated until Manager requests to exit help mode.
 5.  User requests to exit help mode.
-6.  AddressBook exits help mode.
+6.  TeamScape exits help mode.
 
     Use case ends.
 
 **Extensions**
 
 * 4a. Invalid input from user.
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * *a. At any time, manager chooses to exit help mode
-    * *a1. AddressBook exits help mode.
+    * *a1. TeamScape exits help mode.
 
       Use case ends.
 
@@ -672,7 +672,7 @@ Based on the latest implementation of TeamScape:
 - **Storage**: Component that saves/loads data to/from the hard drive.
 - **API**: Application Programming Interface. How components interact (e.g., `Logic.java` defines the API for executing commands).
 - **JSON**: A file format used to store data (e.g., team members are saved in `addressbook.json`).
-- **AddressBook**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
+- **TeamScape**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
 - **Displayed person list**: The current list of persons displayed to users by GUI; could be a result of `list` or `find` command.
 
 
