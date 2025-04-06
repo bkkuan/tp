@@ -18,6 +18,7 @@ import seedu.address.model.task.TaskStatus;
 public class ReportCommand extends Command {
     public static final String COMMAND_WORD = "report";
     public static final String MESSAGE_SUCCESS = "Task Status Report Generated!";
+    public static final String MESSAGE_NO_TASKS = "No Tasks Found";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -54,6 +55,11 @@ public class ReportCommand extends Command {
                 yetToStartTasks.add(person);
             }
         }
+
+        if (completedTasks.isEmpty() && inProgressTasks.isEmpty() && yetToStartTasks.isEmpty()) {
+            return new CommandResult(MESSAGE_NO_TASKS);
+        }
+        
         return new CommandResult(MESSAGE_SUCCESS, completedTasks, inProgressTasks, yetToStartTasks);
     }
 }
