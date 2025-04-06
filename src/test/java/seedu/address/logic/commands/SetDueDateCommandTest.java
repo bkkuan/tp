@@ -67,6 +67,14 @@ class SetDueDateCommandTest {
     }
 
     @Test
+    void execute_pastDueDate_throwsCommandException() {
+        // illegal to set yet-to-start/in-progress task to be completed
+        LocalDateTime pastDueDate = LocalDateTime.parse("2025-01-01T12:00");
+        SetDueDateCommand command = new SetDueDateCommand(pastDueDate, INDEX_FIRST_TASK, INDEX_FIRST_PERSON);
+        assertThrows(CommandException.class, () -> command.execute(model));
+    }
+
+    @Test
     void execute_invalidPersonIndex_throwsCommandException() {
         Index outOfBoundsPersonIndex = Index.fromZeroBased(10);
         SetDueDateCommand command = new SetDueDateCommand(newDueDate, INDEX_FIRST_TASK, outOfBoundsPersonIndex);

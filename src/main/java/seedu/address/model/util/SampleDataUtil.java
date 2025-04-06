@@ -74,7 +74,7 @@ public class SampleDataUtil {
                     getSkillSet("java", "c"),
                     getOtherSet(""),
                     "in progress",
-                    getTask("outing, 2025-06-07 17:00, yet to start")),
+                    getTask("outing, 2025-06-07 17:00, completed")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Telegram("@roy"),
                     new Position("team member"),

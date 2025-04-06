@@ -6,7 +6,9 @@
 
 # TeamScape User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
+Are you a manager of small teams looking to record tasks remotely? Look no further, presenting to you... TEAMSCAPE
+
+TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3. 
 
 <!-- * Table of Contents -->
 ## Table of Contents
@@ -41,9 +43,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts and the tasks
 
 2. Download the latest `.jar` file from [here](https://github.com/AY2425S2-CS2103-F09-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TeamScape.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -158,7 +160,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tele/TELEGRAM] [pos/POSITION] [a/ADDRESS] [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the fields must be provided. 
@@ -187,7 +189,7 @@ Format: `setduedate PERSON_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`
 * Due date must be inputted in the format of `yyyy-mm-dd hh:mm`.
 * Due date cannot be in the past.
 * If due date is already set as such, user will be notified gracefully.
-* Special case for February: set to the last day of that year if user types in 29th Feb during a non-leap year.
+* Special case for some months having different last date: set to the last day of that month if user types in a date more than the valid date of that month (e.g. 29th Feb during a non-leap year -> set to 28th Feb and notify user by printing the set date on the GUI).
 
 Examples:
 * `setduedate 2 taskint/1 due/2026-02-29 23:59`
@@ -206,8 +208,8 @@ Format: `listtasks INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `listtasks 2` list the tasks the 2nd person in the address book has.
-* `find n/ Alex` followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
+* `listtasks 2` list the tasks the 2nd person in the address book/displayed person list.
+* Type `find n/ Alex` then enter, followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
 
 Example results for member without task:
 * ![listtasks for person without a task](images/listtasksAlex.png)
@@ -400,7 +402,6 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-3. 
 
 --------------------------------------------------------------------------------------------------------------------
 
