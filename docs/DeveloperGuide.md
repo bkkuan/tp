@@ -343,7 +343,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | team manager | add a member, his/her position, department, roles                                            | start tracking my team member progress.                                          |
 | `* * *`  | team manager | remove inactive team members                                                                 | keep the team database clean and up-to-date.                                     |
-| `* * *`  | team manager | add a task/subtask under a member                                                            | ensure clarity responsibilities.                                                 |
+| `* * *`  | team manager | add a task/subtask under a member                                                            | ensure clarity in responsibilities.                                              |
 | `* * *`  | team manager | be able to mark the task as completed/in-progress/yet-to-start                               | check the status of my tasks.                                                    |
 | `* * *`  | team manager | set due dates for the tasks                                                                  | know what time each task need to be completed by.                                |
 | `* * *`  | team manager | receive a summary of task statuses                                                           | stay informed.                                                                   |
