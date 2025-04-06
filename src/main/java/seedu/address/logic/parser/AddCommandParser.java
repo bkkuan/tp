@@ -65,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 
         // Set a default task status.
-        String taskStatus = "not started";
+        String taskStatus = "yet to start";
 
         Person person = new Person(name, phone, email, telegram, position, address,
                 tagList, skillList, otherList, taskStatus, taskList);
