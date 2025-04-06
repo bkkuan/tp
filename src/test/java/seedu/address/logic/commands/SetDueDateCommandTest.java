@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.formatDueDate;
 import static seedu.address.logic.commands.SetDueDateCommand.MESSAGE_SUCCESS_SET_DUE_DATE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_COMPLETED_TASK_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -64,35 +63,6 @@ class SetDueDateCommandTest {
 
         String expectedResult = String.format(MESSAGE_SUCCESS_SET_DUE_DATE,
                 formatDueDate(newDueDate), Messages.format(editedPerson));
-        assertCommandSuccess(command, model, expectedResult, expectedModel);
-    }
-
-    @Test
-    void execute_pastDueDateCompleted_success() {
-        LocalDateTime pastDueDate = LocalDateTime.parse("2025-01-01T12:00");
-        SetDueDateCommand command = new SetDueDateCommand(pastDueDate, INDEX_FIRST_TASK, INDEX_COMPLETED_TASK_PERSON);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        Person personToEdit = SampleDataUtil.getSamplePersons()[4];
-        List<Task> updatedTasks = personToEdit.getTasks();
-        Task taskToUpdate = updatedTasks.get(INDEX_FIRST_TASK.getZeroBased());
-        taskToUpdate.setDueDate(pastDueDate);
-        Person editedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getTelegram(),
-                personToEdit.getPosition(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                personToEdit.getSkills(),
-                personToEdit.getOthers(),
-                personToEdit.getTaskStatus(),
-                updatedTasks
-        );
-
-        String expectedResult = String.format(MESSAGE_SUCCESS_SET_DUE_DATE,
-                formatDueDate(pastDueDate), Messages.format(editedPerson));
         assertCommandSuccess(command, model, expectedResult, expectedModel);
     }
 

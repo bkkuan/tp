@@ -18,7 +18,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskStatus;
 
 /**
  * Set the due date for a task.
@@ -119,7 +118,7 @@ public class SetDueDateCommand extends Command {
     private void checkDueDateValidity(Task taskToUpdate) throws CommandException {
         if (taskToUpdate.getDueDate() != null && taskToUpdate.getDueDate().equals(dueDate)) {
             throw new CommandException(String.format("Your due date is already: %s", formatDueDate()));
-        } else if (dueDate.isBefore(LocalDateTime.now()) && !taskToUpdate.getStatus().equals(TaskStatus.COMPLETED)) {
+        } else if (dueDate.isBefore(LocalDateTime.now())) {
             throw new CommandException("Due date is in the past!");
         }
     }
