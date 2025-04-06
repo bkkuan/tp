@@ -362,6 +362,7 @@ public class ParserUtil {
     /**
      * Parses the due date provided by the user from the given {@code ArgumentMultimap},
      * expecting the value associated with {@code PREFIX_DUE_DATE} to be in String format.
+     * For SetDueDateCommand.
      *
      * @param argMultimap The map containing argument prefixes and their corresponding values.
      * @return The parsed {@code LocalDateTime} due date.
@@ -374,9 +375,6 @@ public class ParserUtil {
         try {
             String dateString = argMultimap.getValue(PREFIX_DUE_DATE).get();
             dueDate = LocalDateTime.parse(dateString, INPUT_FORMATTER);
-            if (dueDate.isBefore(LocalDateTime.now())) {
-                throw new ParseException("Due date is in the past!");
-            }
 
         } catch (DateTimeParseException e) {
             throw new ParseException(MESSAGE_INCORRECT_DATE_FORMAT);

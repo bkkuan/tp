@@ -31,7 +31,6 @@ public class Messages {
             + "Check again against the command usage.";
     public static final String MESSAGE_INVALID_TASK_FORMAT = "The task should only comprise description, date and "
             + "status.";
-    public static final String MESSAGE_UPDATE_TASK_SUCCESS = "Updated task for %1$s: %2$s";
     public static final String MESSAGE_NOT_UPDATED = "At least one task field parameter must be provided: "
                                                    + "TASK_DESCRIPTION | TASK_STATUS | TASK_DATE";
     public static final String MESSAGE_DUPLICATE_TASK = "Such task is already present for this person.\n"

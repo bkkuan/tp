@@ -342,7 +342,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | team manager | add a member, his/her position, department, roles                                            | start tracking my team member progress.                                          |
 | `* * *`  | team manager | remove inactive team members                                                                 | keep the team database clean and up-to-date.                                     |
-| `* * *`  | team manager | add a task/subtask under a member                                                            | ensure clarity responsibilities.                                                 |
+| `* * *`  | team manager | add a task/subtask under a member                                                            | ensure clarity in responsibilities.                                              |
 | `* * *`  | team manager | be able to mark the task as completed/in-progress/yet-to-start                               | check the status of my tasks.                                                    |
 | `* * *`  | team manager | set due dates for the tasks                                                                  | know what time each task need to be completed by.                                |
 | `* * *`  | team manager | receive a summary of task statuses                                                           | stay informed.                                                                   |
@@ -661,16 +661,18 @@ Based on the latest implementation of TeamScape:
 
 ### Glossary
 
-    - **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`).
-    - **Mainstream OS**: Windows, Linux, Unix, macOS.
-    - **Private contact detail**: A contact detail not meant to be shared (e.g., personal phone number).
-    - **Task**: A unit of work assigned to a team member, which can have subtasks and deadlines.
-    - **Subtask**: A smaller component of a task (e.g., "Design UI mockups" as part of "Develop login feature").
-    - **Model**: The component managing data (e.g., storing team members and tasks).
-    - **UI**: User Interface. The visual part of the app (e.g., buttons, lists).
-    - **Storage**: Component that saves/loads data to/from the hard drive.
-    - **API**: Application Programming Interface. How components interact (e.g., `Logic.java` defines the API for executing commands).
-    - **JSON**: A file format used to store data (e.g., team members are saved in `addressbook.json`).
+- **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`). 
+- **Mainstream OS**: Windows, Linux, Unix, macOS.
+- **Private contact detail**: A contact detail not meant to be shared (e.g., personal phone number).
+- **Task**: A unit of work assigned to a team member, which can have subtasks and deadlines.
+- **Subtask**: A smaller component of a task (e.g., "Design UI mockups" as part of "Develop login feature").
+- **Model**: The component managing data (e.g., storing team members and tasks).
+- **UI**: User Interface. The visual part of the app (e.g., buttons, lists).
+- **Storage**: Component that saves/loads data to/from the hard drive.
+- **API**: Application Programming Interface. How components interact (e.g., `Logic.java` defines the API for executing commands).
+- **JSON**: A file format used to store data (e.g., team members are saved in `addressbook.json`).
+- **AddressBook**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
+- **Displayed person list**: The current list of persons displayed to users by GUI; could be a result of `list` or `find` command.
 
 
 
@@ -828,10 +830,10 @@ testers are expected to do more *exploratory* testing.
 
 2. Test case: `updatetask 3 2 project milestone 1 sprint, 2025-05-12 10:00, in progress` <br>
 **Expected**:
-   - Third task of second member updated as completed from its previous state. 
-   - Successful message to confirms update and shows new task details.
+   - Third task of second person updated as completed from its previous state. 
+   - Successful message to confirm update and shows new task details.
 
-3Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
+3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
    **Expected**:
     - No change to the specified task
     - Error message shows specific error.
