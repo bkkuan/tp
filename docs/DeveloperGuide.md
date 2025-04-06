@@ -672,6 +672,7 @@ Based on the latest implementation of TeamScape:
     - **Storage**: Component that saves/loads data to/from the hard drive.
     - **API**: Application Programming Interface. How components interact (e.g., `Logic.java` defines the API for executing commands).
     - **JSON**: A file format used to store data (e.g., team members are saved in `addressbook.json`).
+    - **AddressBook**: The system in which the users will interact with to save contacts into and assign tasks to contacts.
 
 
 
