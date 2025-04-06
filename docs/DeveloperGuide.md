@@ -28,8 +28,7 @@
   - [Glossary](#glossary)  
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)  
   - [Launch and shutdown](#launch-and-shutdown)  
-  - [Deleting a person](#deleting-a-person)  
-  - [Saving data](#saving-data)  
+  - [Deleting a member](#deleting-a-member)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +56,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2425S2-CS2103-F09-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](http://github.com/AY2425S2-CS2103-F09-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -95,7 +94,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2425S2-CS2103-F09-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2425S2-CS2103-F09-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -125,7 +124,7 @@ How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
+1. The command can communicate with the `Model` when it is executed (e.g. to delete a member).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -137,7 +136,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, `TaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-For example, the `AddressBookParser` will route `task` commands to `TaskCommandParser`, which parses the input and creates a `TaskCommand` object. The `TaskCommand` class implements the `Command` interface and defines the execution logic for adding tasks to a person.
+For example, the `AddressBookParser` will route `task` commands to `TaskCommandParser`, which parses the input and creates a `TaskCommand` object. The `TaskCommand` class implements the `Command` interface and defines the execution logic for adding tasks to a member.
 
 The `TaskStatus` enum provides a standardized way to represent the state of a task, namely `YET_TO_START`, `IN_PROGRESS`, and `COMPLETED`.
 
@@ -193,11 +192,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th member in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new member. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
@@ -207,7 +206,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the member was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
@@ -263,7 +262,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the member being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -282,11 +281,11 @@ We use an `enum TaskStatus` to define task states:
 #### Commands
 | Command      | Description                         |
 |--------------|-------------------------------------|
-| `task`       | Adds a task to a person             |
-| `deltask`    | Deletes a task from a person        |
+| `task`       | Adds a task to a member             |
+| `deltask`    | Deletes a task from a member        |
 | `setduedate` | Sets a due date for a specific task |
-| `updatetask` | Updates a task for a person         |
-| `listtasks`  | Lists tasks for a specific person   |
+| `updatetask` | Updates a task for a member         |
+| `listtasks`  | Lists tasks for a specific member   |
 | `report`     | Generates a task completion summary |
 
 #### Key Implementation Notes
@@ -321,7 +320,7 @@ We use an `enum TaskStatus` to define task states:
 
 **Target user profile**:
 
-* has a need to manage a small team
+* has a need to manage a small team (preferably less than 10)
 * need efficient way to track and manage team members' progress and status
 * does not require online syncing functionality
 * does not require multi-user interactions
@@ -351,7 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user         | access interactive tutorials or help pop-ups                                                 | quickly learn how to use the app’s features effectively.                         |
 | `* *`    | team manager | identify gaps in skills required for the Task and the members/departments assigned to it     | assign more people to the Task to fill up the skill gap.                         |
 | `* *`    | team manager | search for tasks sorted by their priority levels                                             | know which tasks need immediate attention.                                       |
-| `* *`    | team manager | search for tasks by their assigned deadline                                                  | search for tasks by their assigned deadline.                                     |
+| `* *`    | team manager | search for tasks by their assigned deadline                                                  | can know what are the upcoming tasks.                                            |
 | `* *`    | team manager | filter team members by their availability (sorting by number of tasks)                       | assign tasks only to those who are not overloaded.                               |
 | `* *`    | team manager | edit the position, department, roles of my team members                                      | easily organise my team structure when there is a change.                        |
 | `* *`    | team manager | add skills required for a task                                                               | know which members/department to assign the task to.                             |
@@ -377,14 +376,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `manager`, unless specified otherwise)
+(For all use cases below, the **System** is the `TeamScape` and the **Actor** is the `manager`, unless specified otherwise)
 
 **Use case: UC1 List members**
 
 **MSS**
 
 1.  Manager requests to list members
-2.  AddressBook shows a list of members
+2.  TeamScape shows a list of members
 
 **Extensions**
 
@@ -397,7 +396,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to list tasks.
-2.  AddressBook shows a list of tasks.
+2.  TeamScape shows a list of tasks.
 
 **Extensions**
 
@@ -411,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager requests to delete a specific member in the list
-3.  AddressBook deletes the member
+3.  TeamScape deletes the member
 
     Use case ends.
 
@@ -419,7 +418,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -429,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager requests to edit a specific member in the list
-3.  AddressBook edits the member
+3.  TeamScape edits the member
 
     Use case ends.
 
@@ -437,22 +436,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. Edit command received invalid inputs.
 
-    * 3b1. AddressBook shows an error message
+    * 3b1. TeamScape shows an error message
 
       Use case resumes at step 2.
 
-**Use case: UC5 Add a person**
+**Use case: UC5 Add a member**
 
 **MSS**
 
 1.  Manager requests to add a member to the list
-2.  AddressBook adds the member
+2.  TeamScape adds the member
 
     Use case ends.
 
@@ -460,18 +459,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The details provided are invalid.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 1.
 
-**Use case: UC6 Add a task under a person**
+**Use case: UC6 Add a task under a member**
 
 **MSS**
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager <ins>list tasks (UC2)</ins>.
 3.  Manager requests to add a task under a member.
-4.  AddressBook adds a task under a member.
+4.  TeamScape adds a task under a member.
 
     Use case ends.
 
@@ -479,24 +478,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The given index for either task is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 4b. The given index for either member is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC7 Changes a task under a person**
+**Use case: UC7 Edit a task under a member**
 
 **MSS**
 
 1.  Manager <ins>list members (UC1)</ins>.
 2.  Manager <ins>list tasks (UC2)</ins>.
 3.  Manager requests to change a task under a member.
-4.  AddressBook changes a task under a member.
+4.  TeamScape changes a task under a member.
 
     Use case ends.
 
@@ -504,13 +503,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 4a. The given index for either task is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 4b. The given index for either member is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 4b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -519,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. Manager requests to create a task.
-2. AddressBook creates a task.
+2. TeamScape creates a task.
 
    Use case ends.
 
@@ -527,7 +526,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. Invalid task input.
 
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -537,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Manager <ins>list tasks (UC2)</ins>.
 2. Manager requests to set a due date for a task.
-3. AddressBook set a due date for a task.
+3. TeamScape set a due date for a task.
 
    Use case ends.
 
@@ -545,13 +544,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given task index is invalid.
 
-    * 4a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The due date format is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 3b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -561,7 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Manager <ins>list tasks (UC2)</ins>.
 2.  Manager requests to set a due date for a task.
-3.  AddressBook set a due date for a task.
+3.  TeamScape set a due date for a task.
 
     Use case ends.
 
@@ -569,13 +568,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given task index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * 3b. The due date format is invalid.
 
-    * 4b1. AddressBook shows an error message.
+    * 3b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -584,19 +583,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to find the member by name.
-2.  AddressBook finds the member.
+2.  TeamScape finds the member.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Empty member list
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case ends.
 
 * 2b. No member of the name found.
-    * 2b1. AddressBook shows an error message.
+    * 2b1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -605,14 +604,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to generate tasks report.
-2.  AddressBook generate tasks report and show.
+2.  TeamScape generate tasks report and show.
 
     Use case ends.
 
 **Extensions**
 
 * 2a. Empty task list
-    * 2a1. AddressBook shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -621,24 +620,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  Manager requests to get help.
-2.  AddressBook prompts manager.
+2.  TeamScape prompts manager.
 3.  Manager input a prompt.
-4.  AddressBook shows user guide.
+4.  TeamScape shows user guide.
     Steps 3 and 4 are repeated until Manager requests to exit help mode.
 5.  User requests to exit help mode.
-6.  AddressBook exits help mode.
+6.  TeamScape exits help mode.
 
     Use case ends.
 
 **Extensions**
 
 * 4a. Invalid input from user.
-    * 4a1. AddressBook shows an error message.
+    * 4a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
 * *a. At any time, manager chooses to exit help mode
-    * *a1. AddressBook exits help mode.
+    * *a1. TeamScape exits help mode.
 
       Use case ends.
 
@@ -647,15 +646,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 Based on the latest implementation of TeamScape:
 1. Should work on any mainstream OS with specifically Java 17.
-2. Should support up to 1 person and their associated tasks with minimal performance degradation.
+2. Should support up to 1 member and their associated tasks with minimal performance degradation.
 3. Application should function fully offline with no internet connection.  
 4. Command input should be case-insensitive and provide informative error messages on incorrect format.
 5. Should recover the last known good state if the app crashes unexpectedly.
 6. Should allow real-time UI refresh when task status or due date is updated.
 7. Should complete most operations (e.g., add, delete, update) within 200ms. 
 8. Should retrieve and display 1000 records within 1.5s. 
-9. Should not allow duplicate tasks to be added for a person.
-10. Should not allow duplicate persons.
+9. Should not allow duplicate tasks to be added for a member.
+10. Should not allow duplicate members.
 11. Should highlight invalid commands with contextual prompts and guide users on correct input format. 
 12. Should ensure extensibility of task logic by modularizing command parser, validator, and model layers. 
 13. Should keep memory usage under 200MB during peak load.
@@ -690,7 +689,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file or run file with `java -jar teamscape.jar`(recommended) <br> Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file or run file with `java -jar TeamScape.jar` (recommended) <br> Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -699,23 +698,23 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Adding a person
+### Adding a member
 
 **Prerequisites:**
-- List all persons using the `list` command.
-- Ensure there are no persons with the same details you're about to add.
+- List all members using the `list` command.
+- Ensure there are no members with the same details you're about to add.
 
 1. Test case: `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street, block 123, #01-01` 
 <br>
 **Expected**:
    - New contact is added to the list.
    - Details of the added contact shown in the status message.
-   - Contact list updated with the new person.
+   - Contact list updated with the new member.
 
 2. Test case: `add n/John Doe p/98765432` (missing required fields)
 <br>
 **Expected**:
-   - No person is added. 
+   - No member is added. 
    - Error details shown in the status message.
    - Member list not updated.
 
@@ -726,15 +725,15 @@ testers are expected to do more *exploratory* testing.
 <br>
   **Expected**: Similar to previous error case.
 
-### Adding a task to a person
+### Adding a task to a member
 
 **Prerequisites:**
-- Have at least one person in the address book.
-- View this person using `list` or `find` command.
+- Have at least one member in the address book.
+- View this member using `list` or `find` command.
 
 1. Test case: `task 1 task/Prepare report, 2025-10-10 10:00, in progress` <br>
 **Expected**:
-   - Task is added to the first person's task list. 
+   - Task is added to the first member's task list. 
    - Status message shows task was added. 
 
 2. Test case: `task 1 task/Book venue` (minimal task) <br>
@@ -747,20 +746,20 @@ testers are expected to do more *exploratory* testing.
    - No task added. 
    - Error shown for invalid index.
 
-### Editing a person
+### Editing a member
 
 **Prerequisites:**
-- Have at least one person in the address book.
-- View this person using `list` command.
+- Have at least one member in the address book.
+- View this member using `list` command.
 
 1. Test case: `edit 1 p/91234567 e/johndoe@example.com` <br>
 **Expected**:
-   - First person's phone and email are updated. 
+   - First member's phone and email are updated. 
    - Status message shows changes.
 
 2. Test case: `edit 1 t/` (clearing tags) <br>
 **Expected**:
-   - All tags removed from first person. 
+   - All tags removed from first member. 
    - Status message confirms changes.
 
 3. Test case: `edit 0 n/Invalid` <br>
@@ -771,11 +770,11 @@ testers are expected to do more *exploratory* testing.
 ### Setting due date for a task
 
 **Prerequisites:**
-- Have at least one person with at least one task.
+- Have at least one member with at least one task.
 
 1. Test case: `setduedate 1 taskint/1 due/2026-02-28 23:59` <br>
 **Expected**:
-   - Due date set for first task of first person. 
+   - Due date set for first task of first member. 
    - Status message confirms change.
 
 2. Test case: `setduedate 1 taskint/1 due/2020-01-01 00:00` (past date) <br>
@@ -790,11 +789,11 @@ testers are expected to do more *exploratory* testing.
 ### Listing tasks assigned to a member
 
 **Prerequisites:**
-- Have at least one person with tasks.
+- Have at least one member with tasks.
 
 1. Test case: `listtasks 1`<br>
 **Expected**:
-   - Tasks for first person displayed. 
+   - Tasks for first member displayed. 
    - Status bar shows command success.
 
 2. Test case: `listtasks 0`<br>
@@ -805,11 +804,11 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a task under a member
 
 **Prerequisites:**
-- Have at least one person with at least one task.
+- Have at least one member with at least one task.
 
 1. Test case: `deltask 1 1` <br>
 **Expected**:
-   - First task of first person deleted. 
+   - First task of first member deleted. 
    - Status message confirms deletion.
 
 2. Test case: `deltask 1 0` <br>
@@ -817,19 +816,19 @@ testers are expected to do more *exploratory* testing.
    - No task deleted. 
    - Error about invalid index.
 
-### Updating task for a person
+### Updating task for a member
 
 **Prerequisites:**
-- Have at least one person with at least one task.
+- Have at least one member with at least one task.
 
 1. Test case: `updatetask 1 1 completed` <br>
 **Expected**:
-   - First task of first person updated as completed from its previous state. 
+   - First task of first member updated as completed from its previous state. 
    - Successful message confirms update and shows new task details.
 
 2. Test case: `updatetask 3 2 project milestone 1 sprint, 2025-05-12 10:00, in progress` <br>
 **Expected**:
-   - Third task of second person updated as completed from its previous state. 
+   - Third task of second member updated as completed from its previous state. 
    - Successful message to confirms update and shows new task details.
 
 3Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
@@ -838,53 +837,53 @@ testers are expected to do more *exploratory* testing.
     - Error message shows specific error.
 
 
-### Finding persons
+### Finding members
 
 **Prerequisites:**
-- Have several persons with different names, tags, and tasks.
+- Have several members with different names, tags, and tasks.
 
 1. Test case: `find n/ john` <br>
 **Expected**:
-   - Persons with "john" in name displayed. 
+   - Members with "john" in name displayed. 
    - Status shows number of matches.
 
 2. Test case: `find t/ friend` <br>
 **Expected**:
-   - Persons with "friend" tag displayed.
+   - Members with "friend" tag displayed.
 
 3. Test case: `find task/ report` <br>
 **Expected**:
-   - Persons with tasks containing "report" displayed.
+   - Members with tasks containing "report" displayed.
 
 4. Test case: `find n/ john t/ friend` <br>
 **Expected**:
-   - Persons matching both name and tag criteria displayed.
+   - Members matching both name and tag criteria displayed.
 
 ### Generating Task Status Report
 
 **Prerequisites:**
-- Have several persons with tasks in different statuses.
+- Have several members with tasks in different statuses.
 - Tasks should be categorized into statuses: Yet to Start, In Progress, and Completed.
-- Person should have at least one task to be included in the report.
+- Member should have at least one task to be included in the report.
 
 1. Test case: `report` <br>
 **Expected**:
    - A summary report is displayed, grouping tasks by their status (Yet to Start, In Progress, Completed).
-   - Each status section shows the number of person with tasks in parentheses.
-   - Person under each status have their tasks listed in the order they were assigned.
+   - Each status section shows the number of member with tasks in parentheses.
+   - Member under each status have their tasks listed in the order they were assigned.
    - Status bar confirms successful execution
 
-### Deleting a person
+### Deleting a member
 
-1. Deleting a person while all persons are being shown
+1. Deleting a member while all members are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all members using the `list` command. Multiple members in the list.
 
    2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    3. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.

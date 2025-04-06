@@ -1,11 +1,17 @@
 package seedu.address.model.other;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Other in TeamScape.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidOtherName(String)}
  */
 public class Other {
+
+    public static final String MESSAGE_CONSTRAINTS = "Others names should not be empty";
+    public static final String VALIDATION_REGEX = "(?=.*\\S).*";
+
     public final String other;
 
     /**
@@ -15,7 +21,15 @@ public class Other {
      */
     public Other(String other) {
         requireNonNull(other);
+        checkArgument(isValidOtherName(other), MESSAGE_CONSTRAINTS);
         this.other = other;
+    }
+
+    /**
+     * Returns true if a given string is a valid other name.
+     */
+    public static boolean isValidOtherName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

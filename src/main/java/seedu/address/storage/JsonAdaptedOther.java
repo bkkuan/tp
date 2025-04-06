@@ -37,6 +37,9 @@ class JsonAdaptedOther {
      * Converts this Jackson-friendly adapted tag object into the model's {@code Other} object.
      */
     public Other toModelType() throws IllegalValueException {
+        if (!Other.isValidOtherName(other)) {
+            throw new IllegalValueException(Other.MESSAGE_CONSTRAINTS);
+        }
         return new Other(other);
     }
 
