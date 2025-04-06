@@ -6,6 +6,8 @@
 
 # TeamScape User Guide
 
+Are you a manager of small teams looking to record tasks remotely? Look no further, presenting to you... TEAMSCAPE
+
 TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3. 
 
 <!-- * Table of Contents -->
@@ -206,8 +208,8 @@ Format: `listtasks INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `listtasks 2` list the tasks the 2nd person in the address book has.
-* `find n/ Alex` followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
+* `listtasks 2` list the tasks the 2nd person in the address book/displayed person list.
+* Type `find n/ Alex` then enter, followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
 
 Example results for member without task:
 * ![listtasks for person without a task](images/listtasksAlex.png)
