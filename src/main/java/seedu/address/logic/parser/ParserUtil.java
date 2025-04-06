@@ -11,8 +11,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -68,7 +70,7 @@ public class ParserUtil {
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll("\\s+", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -153,7 +155,7 @@ public class ParserUtil {
      */
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
-        String trimmedTag = tag.trim();
+        String trimmedTag = tag.trim().replaceAll("\\s+", " ");
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -180,7 +182,10 @@ public class ParserUtil {
      */
     public static Skill parseSkill(String skill) throws ParseException {
         requireNonNull(skill);
-        String trimmedSkill = skill.trim();
+        String trimmedSkill = skill.trim().replaceAll("\\s+", " ");
+        if (!Skill.isValidSkillName(trimmedSkill)) {
+            throw new ParseException(Skill.MESSAGE_CONSTRAINTS);
+        }
         return new Skill(trimmedSkill);
     }
 
@@ -204,7 +209,10 @@ public class ParserUtil {
      */
     public static Other parseOther(String other) throws ParseException {
         requireNonNull(other);
-        String trimmedOther = other.trim();
+        String trimmedOther = other.trim().replaceAll("\\s+", " ");
+        if (!Other.isValidOtherName(trimmedOther)) {
+            throw new ParseException(Other.MESSAGE_CONSTRAINTS);
+        }
         return new Other(trimmedOther);
     }
 
@@ -343,7 +351,8 @@ public class ParserUtil {
      */
     public static Set<Task> parseTasks(Collection<String> tasks) throws ParseException {
         requireNonNull(tasks);
-        final Set<Task> taskSet = new HashSet<>();
+        final Set<Task> taskSet = new TreeSet<>(Comparator.comparing(task -> task.getDescription().trim()
+                .replaceAll("\\s+", " ").toLowerCase()));
         for (String task : tasks) {
             taskSet.add(parseTask(task));
         }

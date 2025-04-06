@@ -1,12 +1,17 @@
 package seedu.address.model.skill;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Skill in TeamScape.
- * Guarantees: immutable
+ * Guarantees: immutable; name is valid as declared in {@link #isValidSkillName(String)}
  */
 public class Skill {
+
+    public static final String MESSAGE_CONSTRAINTS = "Skills names should not be empty";
+    public static final String VALIDATION_REGEX = "(?=.*\\S).*";
+
     public final String skillName;
 
     /**
@@ -16,7 +21,15 @@ public class Skill {
      */
     public Skill(String skillName) {
         requireNonNull(skillName);
+        checkArgument(isValidSkillName(skillName), MESSAGE_CONSTRAINTS);
         this.skillName = skillName;
+    }
+
+    /**
+     * Returns true if a given string is a valid skill name.
+     */
+    public static boolean isValidSkillName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
