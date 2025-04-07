@@ -143,9 +143,10 @@ Examples:
 
 Adds a task to the specified member.
 
-Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
+Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE][, TASK_STATUS]`
 
 **Note:**
+- _`[ ]`_ signifies optional field.
 - Task description is mandatory.
 - Task Status can be one of: `yet to start`, `in progress`, `completed`.
 - Date and task status are optional. If omitted, status defaults to `yet to start`.
@@ -264,6 +265,7 @@ You may update the description, due date, and/or status.
 Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
 
 **Note:**
+- _`[ ]`_ signifies optional field.
 - There must be at least one field that is not empty.
 - Task parameters must be separated by commas (`,`).
 - Task order matters, from top to bottom:
