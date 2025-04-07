@@ -6,28 +6,28 @@
 
 # TeamScape Developer Guide
 
-## Table of Contents  
-- [Acknowledgements](#acknowledgements)  
-- [Setting up, getting started](#setting-up-getting-started)  
-- [Design](#design)  
-  - [Architecture](#architecture)  
-  - [UI component](#ui-component)  
-  - [Logic component](#logic-component)  
-  - [Model component](#model-component)  
-  - [Storage component](#storage-component)  
-  - [Common classes](#common-classes)  
-- [Implementation](#implementation)  
-  - [Proposed Undo/redo feature](#proposed-undoredo-feature)  
-  - [Implementation of Task Feature](#Implementation-of-Task-Feature)  
-- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)  
-- [Appendix: Requirements](#appendix-requirements)  
-  - [Product scope](#product-scope)  
-  - [User stories](#user-stories)  
-  - [Use cases](#use-cases)  
-  - [Non-Functional Requirements](#non-functional-requirements)  
-  - [Glossary](#glossary)  
-- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)  
-  - [Launch and shutdown](#launch-and-shutdown)  
+## Table of Contents
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Proposed Undo/redo feature](#proposed-undoredo-feature)
+  - [Implementation of Task Feature](#Implementation-of-Task-Feature)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
   - [Deleting a member](#deleting-a-member)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team manager | set reminders for upcoming deadlines                                                         | ensure my team stays on track and meets important deadlines.                     |
 | `* *`    | team manager | quickly search for team members by their progress completion state                           | identify and help those who are lagging behind.                                  |
 | `*`      | team manager | add a task to a department                                                                   | mass assign tasks to members in that department.                                 |
-| `*`      | team manager | create subtasks for a  task                                                                  | break down large tasks into smaller, manageable pieces.                          
+| `*`      | team manager | create subtasks for a  task                                                                  | break down large tasks into smaller, manageable pieces.                          |
 
 *{More to be added}*
 
@@ -644,21 +644,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 Based on the latest implementation of TeamScape:
 1. Should work on any mainstream OS with specifically Java 17.
 2. Should support up to 1 member and their associated tasks with minimal performance degradation.
-3. Application should function fully offline with no internet connection.  
+3. Application should function fully offline with no internet connection.
 4. Command input should be case-insensitive and provide informative error messages on incorrect format.
 5. Should recover the last known good state if the app crashes unexpectedly.
 6. Should allow real-time UI refresh when task status or due date is updated.
-7. Should complete most operations (e.g., add, delete, update) within 200ms. 
-8. Should retrieve and display 1000 records within 1.5s. 
+7. Should complete most operations (e.g., add, delete, update) within 200ms.
+8. Should retrieve and display 1000 records within 1.5s.
 9. Should not allow duplicate tasks to be added for a member.
 10. Should not allow duplicate members.
-11. Should highlight invalid commands with contextual prompts and guide users on correct input format. 
-12. Should ensure extensibility of task logic by modularizing command parser, validator, and model layers. 
+11. Should highlight invalid commands with contextual prompts and guide users on correct input format.
+12. Should ensure extensibility of task logic by modularizing command parser, validator, and model layers.
 13. Should keep memory usage under 200MB during peak load.
 
 ### Glossary
 
-- **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`). 
+- **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`).
 - **Mainstream OS**: Windows, Linux, Unix, macOS.
 - **Private contact detail**: A contact detail not meant to be shared (e.g., personal phone number).
 - **Task**: A unit of work assigned to a team member, which can have subtasks and deadlines.
@@ -703,7 +703,7 @@ testers are expected to do more *exploratory* testing.
 - List all members using the `list` command.
 - Ensure there are no members with the same details you're about to add.
 
-1. Test case: `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street, block 123, #01-01` 
+1. Test case: `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street, block 123, #01-01`
 <br>
 **Expected**:
    - New contact is added to the list.
@@ -713,7 +713,7 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `add n/John Doe p/98765432` (missing required fields)
 <br>
 **Expected**:
-   - No member is added. 
+   - No member is added.
    - Error details shown in the status message.
    - Member list not updated.
 
@@ -732,17 +732,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `task 1 task/Prepare report, 2025-10-10 10:00, in progress` <br>
 **Expected**:
-   - Task is added to the first member's task list. 
-   - Status message shows task was added. 
+   - Task is added to the first member's task list.
+   - Status message shows task was added.
 
 2. Test case: `task 1 task/Book venue` (minimal task) <br>
 **Expected**:
-   - Task is added with default "yet to start" status. 
+   - Task is added with default "yet to start" status.
    - Status message confirms addition.
 
 3. Test case: `task 0 task/Invalid task` <br>
 **Expected**:
-   - No task added. 
+   - No task added.
    - Error shown for invalid index.
 
 ### Editing a member
@@ -753,17 +753,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `edit 1 p/91234567 e/johndoe@example.com` <br>
 **Expected**:
-   - First member's phone and email are updated. 
+   - First member's phone and email are updated.
    - Status message shows changes.
 
 2. Test case: `edit 1 t/` (clearing tags) <br>
 **Expected**:
-   - All tags removed from first member. 
+   - All tags removed from first member.
    - Status message confirms changes.
 
 3. Test case: `edit 0 n/Invalid` <br>
 **Expected**:
-   - No changes made. 
+   - No changes made.
    - Error shown for invalid index.
 
 ### Setting due date for a task
@@ -773,17 +773,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `setduedate 1 taskint/1 due/2026-02-28 23:59` <br>
 **Expected**:
-   - Due date set for first task of first member. 
+   - Due date set for first task of first member.
    - Status message confirms change.
 
 2. Test case: `setduedate 1 taskint/1 due/2020-01-01 00:00` (past date) <br>
 **Expected**:
-   - No changes made. 
+   - No changes made.
    - Error message shown.
 
 3. Other incorrect commands to try: `setduedate 1 taskint/1 due/2025-10-10`, `setduedate 1 /taskint 1 due/2025-10-10 23:59` <br>
 **Expected**:
-   - Error message shown. 
+   - Error message shown.
 
 ### Listing tasks assigned to a member
 
@@ -792,7 +792,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `listtasks 1`<br>
 **Expected**:
-   - Tasks for first member displayed. 
+   - Tasks for first member displayed.
    - Status bar shows command success.
 
 2. Test case: `listtasks 0`<br>
@@ -807,12 +807,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `deltask 1 1` <br>
 **Expected**:
-   - First task of first member deleted. 
+   - First task of first member deleted.
    - Status message confirms deletion.
 
 2. Test case: `deltask 1 0` <br>
 **Expected**:
-   - No task deleted. 
+   - No task deleted.
    - Error about invalid index.
 
 ### Updating task for a member
@@ -822,12 +822,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `updatetask 1 1 completed` <br>
 **Expected**:
-   - First task of first member updated as completed from its previous state. 
+   - First task of first member updated as completed from its previous state.
    - Successful message confirms update and shows new task details.
 
 2. Test case: `updatetask 3 2 project milestone 1 sprint, 2025-05-12 10:00, in progress` <br>
 **Expected**:
-   - Third task of second person updated as completed from its previous state. 
+   - Third task of second person updated as completed from its previous state.
    - Successful message to confirm update and shows new task details.
 
 3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
@@ -843,7 +843,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `find n/ john` <br>
 **Expected**:
-   - Members with "john" in name displayed. 
+   - Members with "john" in name displayed.
    - Status shows number of matches.
 
 2. Test case: `find t/ friend` <br>
@@ -889,15 +889,16 @@ testers are expected to do more *exploratory* testing.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
-While this project is a spin-off from AB3, the project was harder due to the introduction of new functions and the purpose of helping team manager to manage tasks. Hence, we needed to create more entities (Classes) to encapsulate attributes and relationships between entity interactions. 
+While this project is a spin-off from AB3, the project was harder due to the introduction of new functions and the purpose of helping team manager to manage tasks. Hence, we needed to create more entities (Classes) to encapsulate attributes and relationships between entity interactions.
 
 Major challenges encountered includes collaboration between team members especially when there are frequent merge conflicts, introduction of new classes and commands which requires deep understanding of AB3 dependencies, and consensus about certain feature design/UI within the team.
 
-As per our implementation, we achieved a brand new Command Line Interface (CLI) application which not only helps users to manage contacts and their information, our target audience, team leaders, can also reap the benefits of task management. 
+As per our implementation, we achieved a brand new Command Line Interface (CLI) application which not only helps users to manage contacts and their information, our target audience, team leaders, can also reap the benefits of task management.
 
-Using of app, managers can assign multiple tasks under a specific member, check the tasks information such as due date and status under the member, remove task, and generate a holistic task report to check progress and status. 
+Using of app, managers can assign multiple tasks under a specific member, check the tasks information such as due date and status under the member, remove task, and generate a holistic task report to check progress and status.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
-_coming soon after PE-D_.
+* Tasks assigned to a member will only accept tasks that are actively being worked on.
+Tasks with a "completed" status and due in the past will not be allowed, as the task system is not intended to store records of completed tasks. Such records will be stored and managed elsewhere.

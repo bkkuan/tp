@@ -86,7 +86,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             System.out.println(tasksToFindOptional);
             if (!tasksToFindOptional.isPresent()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            };
+            }
             assert tasksToFindOptional.isPresent() : "Should be able to get tasks";
             String tasksToFind = tasksToFindOptional.get().trim();
             System.out.println(tasksToFind);

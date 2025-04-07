@@ -20,11 +20,11 @@ pageNav: 3
 
 2. If you’re using IntelliJ IDEA (highly recommended):
 
-   1. **Configure the JDK**  
+   1. **Configure the JDK**
       Use [this guide](https://se-education.org/guides/tutorials/intellijJdk.html) to set up **JDK 17** in IntelliJ.
 
-   2. **Import as a Gradle Project**  
-      Follow [this guide](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).  
+   2. **Import as a Gradle Project**
+      Follow [this guide](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
       <box type="warning" seamless>
       ⚠️ Note: Importing a Gradle project is slightly different from a normal Java project.
       </box>
@@ -50,7 +50,7 @@ pageNav: 3
 
 ### 2. CI/CD Setup (Auto-configured)
 
-TeamScape uses GitHub Actions for CI. Configuration files are in `.github/workflows`.  
+TeamScape uses GitHub Actions for CI. Configuration files are in `.github/workflows`.
 CI will automatically run on each push or pull request. No extra setup is required.
 
 ---

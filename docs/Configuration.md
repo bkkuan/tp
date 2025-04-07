@@ -5,7 +5,7 @@ title: "Configuration guide"
 
 # Configuration Guide
 
-This guide explains how to configure TeamScape's runtime behavior through the `config.json` file.  
+This guide explains how to configure TeamScape's runtime behavior through the `config.json` file.
 The file is created automatically in the root directory on first launch and contains settings like GUI window size, log file location, and the path to the data file.
 
 ---
@@ -34,7 +34,7 @@ The following fields can be modified in `config.json`:
 
 ## 📝 Editing the Configuration
 
-You can manually edit the `config.json` file **before launching the app**.  
+You can manually edit the `config.json` file **before launching the app**.
 Make sure you use proper JSON syntax.
 
 **Example:**

@@ -110,6 +110,11 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`
+
+* For months with varying numbers of days, if the user enters a date that exceeds the valid number of days for that month, the date will be adjusted to the actual last day of the month. The user will be notified with the adjusted date displayed on the GUI.
+
+
 
 ### Viewing help : `help`
 
@@ -126,9 +131,9 @@ Adds a member to the address book.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [skill/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`
 
-**Note:** 
+**Note:**
 - Task can have no due date and status (ie task/barbeque or task/barbeque, 2025-05-28 14:00 or task/barbeque, in progress) the default status would be yet to start.
-- Repeated names are treated as the same member, regardless of case or other details, and will not be added again. 
+- Repeated names are treated as the same member, regardless of case or other details, and will not be added again.
 - A member can have any number of tags, skills, others and tasks (including 0). See "Adding a task to a member" section for more information regarding task creation.
 - If multiple tags/skills/others/tasks of the same description is added, it will take the first one of that description.
 
@@ -148,13 +153,13 @@ Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
 - Task description is mandatory.
 - Task Status can be one of: `yet to start`, `in progress`, `completed`.
 - Date and task status are optional. If omitted, status defaults to `yet to start`.
-- All task details must be separated by commas `,` in the correct order: description, due date (if any), 
+- All task details must be separated by commas `,` in the correct order: description, due date (if any),
 and then status (if any).
-- There can only exist 1 task with a unique task description. 
+- There can only exist one task with a unique task description.
 In other words, another task with the same description cannot be added.
-- There can only exist 1 `task/` prefix for each TaskCommand to be added.
-- When only 1 task field is provided (e.g. `completed`), and it matches with a valid task status or due date format, 
-it will be interpreted strictly as such regardless of the intention.
+- Multiple `task/` inputs are allowed in the description, but only the first one is treated as the command prefix to add a new task. In other words, everything after the first `task/` is considered part of the description.
+- If only one field is provided and it matches a valid task status (e.g. `completed`) or due date format (e.g. `2025-07-12 12:30`)
+, it will be interpreted strictly as such. Ensure the correct order of parameters to avoid misinterpretation.
 
 **Limitations:**
 - When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of
@@ -185,7 +190,7 @@ Edits an existing member in the address book.
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tele/TELEGRAM] [pos/POSITION] [a/ADDRESS] [t/TAG]…​ [skill/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`
 
 * Edits the member at the specified `INDEX`. The index refers to the index number shown in the displayed member list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the fields must be provided. 
+* At least one of the fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the member will be removed i.e adding of tags is not cumulative.
 * You can remove all the member’s tags by typing `t/` without
@@ -256,7 +261,7 @@ Examples:
 
 ### Updating a task under a member : `updatetask`
 
-Update a specific task of a member. 
+Update a specific task of a member.
 
 You may update the description, due date, and/or status.
 
@@ -270,20 +275,20 @@ Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STA
     - **Status** *(if any)* – One of: `yet to start`, `in progress`, `completed` (case-insensitive)
 
 **Limitations:**
-- When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of 
+- When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of
 input standardisation.
 - When there exists multiple errors with the command input by the user, the error message will only show up one by one at a time.
 
 **Examples: (all possible combinations)**
 - `updatetask 1 1 Fix backend bug`
   Updates only the task description.
-- `updatetask 1 1 Fix backend bug, 2025-10-31 14:00`  
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00`
   Updates the task description and due date.
 - `updatetask 1 1 2025-12-12 23:59, completed`
   Updates the due date and status.
 - `updatetask 1 1 completed`
   Updates only the task status.
-- `updatetask 1 1 Fix backend bug, 2025-10-31 14:00, completed`  
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00, completed`
   Updates all three fields.
 ![`updatetask 1 1 Fix backend bug, 2025-10-31 14:00, completed` ](images/updatetask11.png)
 
@@ -353,7 +358,7 @@ This finds all members who meet the condition specified by the single prefix and
 
 ### Generate Task Status Report : `report`
 
-Shows a summary of all tasks and their completion statuses. 
+Shows a summary of all tasks and their completion statuses.
 
 * Users are associated with their tasks under their status
 * The report is divided into three sections: ‘Yet to Start’, ‘In Progress’, and ‘Completed’

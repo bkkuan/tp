@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_TASK_DESC;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.logging.Logger;
 
@@ -19,28 +18,43 @@ public class TaskCommandParser implements Parser<TaskCommand> {
 
     @Override
     public TaskCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK);
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TASK);
+        // Manually tokenize args, ignoring the ArgumentMultimap
+        String trimmedArgs = args.trim();
+        String[] split = trimmedArgs.split(" ", 2);
 
+        // Ensure there are at least two parts: index and task description
+        if (split.length < 2) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+        }
+
+        // Parse the index part
         Index index;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(split[0]);
             logger.info("Parsed index: " + index.getOneBased());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE), pe);
         }
 
-        if (argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+        // Extract task description after the first space
+        String taskString = split[1].trim();
+
+        // Manually handle multiple "task/" occurrences, treating only the first as a delimiter
+        int taskPrefixIndex = taskString.indexOf("task/");
+        if (taskPrefixIndex != -1) {
+            taskString = taskString.substring(taskPrefixIndex + "task/".length()).trim();
         }
 
-        String taskString = argMultimap.getValue(PREFIX_TASK).orElse("").trim();
+        // If the task description is empty after trimming, throw an error
         if (taskString.isEmpty()) {
             throw new ParseException(MESSAGE_EMPTY_TASK_DESC);
         }
 
+        // Log and parse the task string (lowercase for consistency)
         logger.info("Task string: " + taskString);
-        Task task = ParserUtil.parseTask(taskString);
+        Task task = ParserUtil.parseTask(taskString.toLowerCase());
+
+        // Return the new TaskCommand
         return new TaskCommand(index, task);
     }
 }

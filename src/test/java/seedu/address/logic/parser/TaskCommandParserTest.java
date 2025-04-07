@@ -24,7 +24,7 @@ public class TaskCommandParserTest {
     @Test
     public void parse_validCompleteTask_success() {
         String userInput = "2 task/Buy groceries, 2025-12-31 23:59, yet to start";
-        Task expectedTask = new Task("Buy groceries", TaskStatus.YET_TO_START,
+        Task expectedTask = new Task("buy groceries", TaskStatus.YET_TO_START,
             LocalDateTime.of(2025, 12, 31, 23, 59));
         TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(2), expectedTask);
 
@@ -34,7 +34,7 @@ public class TaskCommandParserTest {
     @Test
     public void parse_onlyDescription_success() {
         String userInput = "1 task/Submit report";
-        Task expectedTask = new Task("Submit report", TaskStatus.YET_TO_START, null);
+        Task expectedTask = new Task("submit report", TaskStatus.YET_TO_START, null);
         TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -42,7 +42,7 @@ public class TaskCommandParserTest {
     @Test
     public void parse_descriptionAndDueDate_success() {
         String userInput = "1 task/Submit report, 2025-12-31 23:59";
-        Task expectedTask = new Task("Submit report", TaskStatus.YET_TO_START,
+        Task expectedTask = new Task("submit report", TaskStatus.YET_TO_START,
             LocalDateTime.of(2025, 12, 31, 23, 59));
         TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -51,8 +51,18 @@ public class TaskCommandParserTest {
     @Test
     public void parse_descriptionAndStatus_success() {
         String userInput = "1 task/Submit report, completed";
-        Task expectedTask = new Task("Submit report", TaskStatus.COMPLETED, null);
+        Task expectedTask = new Task("submit report", TaskStatus.COMPLETED, null);
         TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleTaskPrefixes_success() {
+        String userInput = "1 task/Complete task/Buy groceries, 2025-12-31 23:59, yet to start";
+        Task expectedTask = new Task("complete task/buy groceries", TaskStatus.YET_TO_START,
+            LocalDateTime.of(2025, 12, 31, 23, 59));
+        TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
+
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
