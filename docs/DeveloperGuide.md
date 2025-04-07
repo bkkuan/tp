@@ -894,4 +894,5 @@ Using of app, managers can assign multiple tasks under a specific member, check 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
-_coming soon after PE-D_.
+* Tasks assigned to a member will only accept tasks that are actively being worked on. 
+Tasks with a "completed" status and due in the past will not be allowed, as the task system is not intended to store records of completed tasks. Such records will be stored and managed elsewhere.

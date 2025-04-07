@@ -110,6 +110,11 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
+* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`
+
+* For months with varying numbers of days, if the user enters a date that exceeds the valid number of days for that month, the date will be adjusted to the actual last day of the month. The user will be notified with the adjusted date displayed on the GUI.
+
+
 
 ### Viewing help : `help`
 
@@ -152,11 +157,11 @@ Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
 - Date and task status are optional. If omitted, status defaults to `yet to start`.
 - All task details must be separated by commas `,` in the correct order: description, due date (if any), 
 and then status (if any).
-- There can only exist 1 task with a unique task description. 
+- There can only exist one task with a unique task description. 
 In other words, another task with the same description cannot be added.
-- There can only exist 1 `task/` prefix for each TaskCommand to be added.
-- When only 1 task field is provided (e.g. `completed`), and it matches with a valid task status or due date format, 
-it will be interpreted strictly as such regardless of the intention.
+- There can only exist one `task/` prefix for each TaskCommand to be added.
+- If only one field is provided and it matches a valid task status (e.g. `completed`) or due date format (e.g. `2025-07-12 12:30`)
+, it will be interpreted strictly as such. Ensure the correct order of parameters to avoid misinterpretation. 
 
 **Limitations:**
 - When invalid date format is provided for the task description field, it is accepted as valid as there is no restriction of
