@@ -135,9 +135,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street, block 123, #01-01 task/barbeque, 2025-05-28 14:00, yet to start`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com tele/@besty pos/teacher a/Newgate Prison p/92345678 t/criminal task/barbeque, 2025-05-28 14:00, yet to start`
-  ![input for 'add n/Betsy Crowe t/friend e/betsycrowe@example.com tele/@besty pos/teacher a/Newgate Prison p/9234567 t/criminal task/barbeque, 2025-05-28 14:00, yet to start'](images/addBestyCroweInput.png)
-
-  ![result for 'add n/Betsy Crowe t/friend e/betsycrowe@example.com tele/@besty pos/teacher a/Newgate Prison p/9234567 t/criminal task/barbeque, 2025-05-28 14:00, yet to start'](images/addBestyCroweResult.png)
+  !['add n/Betsy Crowe t/friend e/betsycrowe@example.com tele/@besty pos/teacher a/Newgate Prison p/9234567 t/criminal task/barbeque, 2025-05-28 14:00, yet to start'](images/addBestyCrowe.png)
 
 
 ### Adding a task to a member: `task`
@@ -167,9 +165,9 @@ it will be interpreted strictly as such regardless of the intention.
 - See "Setting due date for a task" section for more information on due dates.
 
 Examples:
-* `task 3 task/Prepare report, 2025-10-10 10:00, in progress`
-* `task 3 task/Book venue`
-  ![taskBasilFullCommand.jpeg](images/taskBasilFullCommand.jpeg)
+* `task 2 task/Prepare report, 2025-10-10 10:00, in progress`
+* `task 2 task/Book venue`
+  !['task 2 task/Book venue'](images/taskBookVenue.png)
 
 
 ### Listing all members : `list`
@@ -177,6 +175,7 @@ Examples:
 Shows a list of all members in the address book.
 
 Format: `list`
+    !['listCommand'](images/listCommand.png)
 
 
 ### Editing a member : `edit`
@@ -195,10 +194,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [tele/TELEGRAM] [pos/POS
 Examples:
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st member to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower t/` Edits the name of the 2nd member to be `Betsy Crower` and clears all existing tags.
-  ![input for 'edit 2 n/Betsy Crower t/'](images/editBestyCroweInput.png)
-
-  ![result for 'edit 2 n/Betsy Crower t/'](images/editBestyCroweResult.png)
-
+  ![input for 'edit 2 n/Betsy Crower t/'](images/editBestyCrowe.png)
 
 
 ### Setting due date for a task : `setduedate`
@@ -231,14 +227,16 @@ Format: `listtasks INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listtasks 2` list the tasks the 2nd person in the address book/displayed person list.
-* Input `find n/ Alex` and enter, then type `listtasks 1` to list the tasks of 1st person in the results of the `find` command.
+* `listtasks 2` list the tasks the 2nd person in TeamScape/displayed person list.
 
-Example results for member without task:
-* ![listtasks for member without a task](images/listtasksAlex.png)
+Possible Combinations of Commands
+* Type `find n/ Betsy` then enter, followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
 
-Example results for member with tasks:
-* ![listtasks for pmember with a task](images/listtasksBetsy.png)
+Example results `listtasks 2`:
+* ![`listtasks 2`](images/listtasks2.png)
+
+Example results of combination of `find n/ Betsy` and `listtasks 1`:
+* ![`find n/ Betsy` and `listtasks 1`](images/findBetsy+listtasks1.png)
 
 
 ### Deleting a task under a member : `deltask`
@@ -252,10 +250,8 @@ Format: `deltask MEMBER_INDEX TASK_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deltask 3 2` deletes the second task of the third member in the displayed member list.
-* ![input for `deltask 3 2`](images/deltaskInput.png)
-
-* ![output for `deltask 3 2`](images/deltaskOutput.png)
+* `deltask 2 3` deletes the third task of the second member in the displayed member list.
+* ![`deltask 2 3`](images/deltask.png)
 
 
 ### Updating a task under a member : `updatetask`
@@ -279,21 +275,18 @@ input standardisation.
 - When there exists multiple errors with the command input by the user, the error message will only show up one by one at a time.
 
 **Examples: (all possible combinations)**
-- `updatetask 1 2 Fix backend bug`
+- `updatetask 1 1 Fix backend bug`
   Updates only the task description.
-- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00`  
+- `updatetask 1 1 Fix backend bug, 2025-10-31 14:00`  
   Updates the task description and due date.
-- `updatetask 1 2 2025-12-12 23:59, completed`
+- `updatetask 1 1 2025-12-12 23:59, completed`
   Updates the due date and status.
-- `updatetask 1 2 completed`
+- `updatetask 1 1 completed`
   Updates only the task status.
-- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00, completed`  
+- `updatetask 1 1 Fix backend bug, 2025-10-31 14:00, completed`  
   Updates all three fields.
+![`updatetask 1 1 Fix backend bug, 2025-10-31 14:00, completed` ](images/updatetask11.png)
 
-**Extended Example**:
-* `listtasks 2` followed by `updatetask 3 2 in progress` sets the task status for the second task of the third member in the displayed member list to be **in progress**.
-![updatetaskBetsy_taskdesc&duedate.jpeg](images/updatetaskBetsy_taskdesc%26duedate.jpeg)
-![updatetaskBetsy_duedate&taskstatus.jpeg](images/updatetaskBetsy_duedate%26taskstatus.jpeg)
 
 ### Locating members by name, tags, or tasks: `find`
 
@@ -310,9 +303,9 @@ Finds members whose names contain any of the given keywords.
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find n/ john` returns `john` and `John Doe`
-* `find n/ alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find n/ bernice alex'](images/findAlexBerniceResult.png)
+* `find n/ john` returns `John Doe`
+* `find n/ john betsy` returns `John Doe`, `Betsy Crower`<br>
+  ![`find n/ john betsy`](images/findJohnBetsy.png)
 
 Finding members by tags:
 
@@ -321,8 +314,8 @@ Format: `find t/ KEYWORD [MORE_KEYWORDS]`
 Finds members whose tags contain any of the given keywords.
 
 Example Usage:
-* `find t/ colleagues friend` returns all Members tagged with colleagues or friends
-  ![result for 'find t/ colleagues friend'](images/findColleaguesFriendResult.png)
+* `find t/ friends money` returns all Members tagged with friends or money
+  ![`find t/ friends money`](images/findFriendsMoney.png)
 
 Finding members by tasks:
 
@@ -332,7 +325,7 @@ Finds members whose task description contain any of the given keywords.
 
 Example Usage:
 * `find task/ barbeque` returns all members with task descriptions containing the word 'bbq'.
-  ![result for 'find task/ barbeque'](images/findbbqResult.png)
+  !['find task/ barbeque'](images/findBarbeque.png)
 
 Finding members by multiple conditions (limited to name, tags and tasks):
 
@@ -343,8 +336,8 @@ This finds all members who meet all the conditions in the specified name, tags, 
 Intuitively, you can think about this as an 'AND' operation. For example, if you want to find all interns that are assigned with the barbeque task, you can use the example command shown below.
 
 Example Usage:
-* `find t/ intern task/ bbq` returns all members with tags interns AND task descriptions containing the word 'bbq'.
-  ![result for 'find t/ intern task/ bbq'](images/findInternBBQResult.png)
+* `find t/ friends task/ bug` returns all members with tags friends AND task descriptions containing the word 'bug'.
+  ![`find t/ friends task/ bug`](images/findFriendsBug.png)
 
 
 ### Generate Task Status Report : `report`
@@ -362,9 +355,7 @@ Bryan (Sleep, Swim), indicating that 'Sleep' was assigned first, followed by 'Sw
 Format: `report`
 
 Example output:
-![generate report for one task](images/report1.png)
-![generate report for one task](images/report2.png)
-![generate report for one task](images/report3.png)
+![generate report](images/report.png)
 
 
 ### Deleting a member : `delete`
@@ -378,8 +369,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* Input `list` and press enter. Then type `delete 2` deletes the 2nd member in the address book.
-* Input `find n/ Betsy` and press enter. then type `delete 1` deletes the 1st member in the results of the `find` command.
+* `delete 2` deletes the 2nd member in TeamScape.
+    ![`delete 2`](images/delete2.png)
 
 
 ### Clearing all entries : `clear`
