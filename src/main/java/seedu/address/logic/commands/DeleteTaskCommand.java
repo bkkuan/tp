@@ -22,7 +22,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the specified task of the specified person. \n"
-            + "Parameters: PERSON_INDEX TASK_INDEX (both must be a positive integer that "
+            + "Parameters: MEMBER_INDEX TASK_INDEX (both must be a positive integer that "
             + "corresponds to member and their task' index)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
@@ -53,7 +53,7 @@ public class DeleteTaskCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (personIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(personIndex.getZeroBased());

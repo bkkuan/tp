@@ -28,16 +28,17 @@ public class UpdateTaskCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Updates an existing task for the specified team member.\n"
         + "Usage:\n"
-        + "  " + COMMAND_WORD + " PERSON_INDEX TASK_INDEX DESCRIPTION[, DUE_DATE][, STATUS]\n"
+        + "  " + COMMAND_WORD + " MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]\n"
         + "\n"
         + "Parameters:\n"
-        + "  PERSON_INDEX - A positive integer representing the team member's index in the displayed list.\n"
+        + "  MEMBER_INDEX - A positive integer representing the team member's index in the displayed list.\n"
         + "  TASK_INDEX   - A positive integer representing the task's index in the team member's task list.\n"
         + "  DESCRIPTION  - The new task description (optional if only updating due date or status).\n"
         + "  DUE_DATE     - (Optional) New due date in format yyyy-MM-dd HH:mm.\n"
         + "  STATUS       - (Optional) New task status: 'yet to start', 'in progress', 'completed'.\n"
         + "\n"
         + "Notes:\n"
+        + "  • At least one field cannot be empty.\n"
         + "  • Use commas (,) to separate multiple fields.\n"
         + "  • Order of parameters matters.\n"
         + "\n"
@@ -103,7 +104,7 @@ public class UpdateTaskCommand extends Command {
 
     private Person getPerson(List<Person> personList) throws CommandException {
         if (personIndex.getZeroBased() >= personList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
         return personList.get(personIndex.getZeroBased());
     }

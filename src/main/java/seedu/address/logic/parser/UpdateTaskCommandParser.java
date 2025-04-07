@@ -21,7 +21,8 @@ public class UpdateTaskCommandParser implements Parser<UpdateTaskCommand> {
     private static final String ERROR_INVALID_TWO_FIELDS =
         "Second parameter must be a valid date (yyyy-MM-dd HH:mm) or task status.";
     private static final String ERROR_INVALID_STATUS_ONLY_COMBO =
-        "Cannot update other fields when only updating task status. Use only: TASK_STATUS";
+        "Cannot update other fields other than the first one when only updating task status.\n"
+            + "Use only: TASK_STATUS input for the first and only field.";
     private static final String ERROR_MISSING_DESCRIPTION =
         "Description cannot be empty when providing multiple fields.";
     private static final String ERROR_INVALID_SECOND_DATE =

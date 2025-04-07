@@ -33,9 +33,9 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * Added unit tests for:
-    * SetDueDateCommandParser 
-    * Listing member tasks 
-    * DeleteTaskCommandParser 
+    * SetDueDateCommandParser
+    * Listing member tasks
+    * DeleteTaskCommandParser
       * Updated test cases to support edge cases like past due dates and missing fields.
   * Overall increase in test coverage. (From 88% to 92%)
 

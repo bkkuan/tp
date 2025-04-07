@@ -6,9 +6,6 @@
 
 # TeamScape User Guide
 
-
-TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
-
 Are you a manager of small teams looking to record tasks remotely? Look no further, presenting to you... TEAMSCAPE
 
 TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
@@ -42,7 +39,7 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
     - [Setting Due Date for a Task](#setting-due-date-for-a-task--setduedate)
     - [Listing Tasks Assigned to a Member](#listing-tasks-assigned-to-a-member--listtasks)
     - [Deleting a Task Under a Member](#deleting-a-task-under-a-member--deltask)
-    - [Updating Status for a Task](#updating-a-task-under-a-member--updatetask)
+    - [Updating a Task Under a Member](#updating-a-task-under-a-member--updatetask)
     - [Locating Members by Name, Tags, or Tasks](#locating-members-by-name-tags-or-tasks-find)
     - [Generate Task Status Report](#generate-task-status-report--report)
     - [Deleting a Member](#deleting-a-member--delete)
@@ -110,10 +107,9 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`
+* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`.
 
-* For months with varying numbers of days, if the user enters a date that exceeds the valid number of days for that month, the date will be adjusted to the actual last day of the month. The user will be notified with the adjusted date displayed on the GUI.
-
+* For months with varying numbers of days, if the use enter a date that exceeds the last day of the month (but <= 31), the system will automatically adjust the date to the last valid day of the month. This adjusted date will be displayed in the success message on the GUI. However, if the user enters a day that exceeds the valid range (e.g., a day beyond 31), the date will be considered invalid.
 
 
 ### Viewing help : `help`
@@ -147,14 +143,15 @@ Examples:
 
 Adds a task to the specified member.
 
-Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
+Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE][, TASK_STATUS]`
 
 **Note:**
+- _`[ ]`_ signifies optional field.
 - Task description is mandatory.
 - Task Status can be one of: `yet to start`, `in progress`, `completed`.
 - Date and task status are optional. If omitted, status defaults to `yet to start`.
-- All task details must be separated by commas `,` in the correct order: description, due date (if any),
-and then status (if any).
+- All task details must be separated by commas `,` in the correct order: description, due date _(if any)_,
+and then status _(if any)_.
 - There can only exist one task with a unique task description.
 In other words, another task with the same description cannot be added.
 - Multiple `task/` inputs are allowed in the description, but only the first one is treated as the command prefix to add a new task. In other words, everything after the first `task/` is considered part of the description.
@@ -268,6 +265,8 @@ You may update the description, due date, and/or status.
 Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
 
 **Note:**
+- _`[ ]`_ signifies optional field.
+- There must be at least one field that is not empty.
 - Task parameters must be separated by commas (`,`).
 - Task order matters, from top to bottom:
     - **Description** _(if any)_
@@ -435,21 +434,21 @@ Furthermore, certain edits can cause the TeamScape to behave in unexpected ways 
 
 ## Command Summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                                                      |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                                                                                                                     |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street task/barbeque, 2025-05-28 14:00, yet to start` |
-| **Clear**        | `clear`                                                                                                                                                                                                                                                               |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
-| **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                  |
-| **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                      |
-| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`         
-| **Find (Task)**   | `find task/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task/ presentation`                                                                                                                                                                                        |
-| **Add Task**     | `task INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                                       |
-| **Delete task**  | `deltask MEMBER_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                             |
-| **Update Task**  | `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                             |
-| **List**         | `list`                                                                                                                                                                                                                                                                |
-| **List Tasks**   | `listtasks INDEX`<br> e.g., `listtasks 2`                                                                                                                                                                                                                             |
-| **Set Due Date** | `setduedate MEMBER_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`<br> e.g., `setduedate 2 taskint/1 due/2025-10-10 23:59`                                                                                                                                             |
-| **Report**       | `report`                                                                                                                                                                                                                                                              |
-| **Help**         | `help`                                                                                                                                                                                                                                                                |
-| **Exit**         | `exit`                                                                                                                                                                                                                                                                |
+| **Clear**        | `clear`                                                                                                                                                                                                                                                              |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                  |
+| **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                 |
+| **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                     |
+| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`                                                                                                                                                                                             |
+| **Find (Task)**   | `find task/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task/ presentation`                                                                                                                                                                                             |
+| **Add Task**     | `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                               |
+| **Delete task**  | `deltask MEMBER_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                            |
+| **Update Task**  | `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                            |
+| **List**         | `list`                                                                                                                                                                                                                                                               |
+| **List Tasks**   | `listtasks INDEX`<br> e.g., `listtasks 2`                                                                                                                                                                                                                            |
+| **Set Due Date** | `setduedate MEMBER_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`<br> e.g., `setduedate 2 taskint/1 due/2025-10-10 23:59`                                                                                                                                            |
+| **Report**       | `report`                                                                                                                                                                                                                                                             |
+| **Help**         | `help`                                                                                                                                                                                                                                                               |
+| **Exit**         | `exit`                                                                                                                                                                                                                                                               |

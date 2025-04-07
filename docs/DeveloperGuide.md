@@ -833,7 +833,7 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
    **Expected**:
     - No change to the specified task
-    - Error message shows specific error.
+    - Error message shows specified error.
 
 
 ### Finding members
@@ -902,3 +902,4 @@ Using of app, managers can assign multiple tasks under a specific member, check 
 ## **Appendix: Planned Enhancements**
 * Tasks assigned to a member will only accept tasks that are actively being worked on.
 Tasks with a "completed" status and due in the past will not be allowed, as the task system is not intended to store records of completed tasks. Such records will be stored and managed elsewhere.
+* Since the Tasks feature is not designed to serve as a storage system, it should only accommodate a reasonable number of tasks, ideally between 5 to 10. Therefore, there is no need to label tasks on display with an index.

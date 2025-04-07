@@ -23,12 +23,12 @@ public class TaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the specified team member.\n"
         + "Usage:\n"
-        + "  " + COMMAND_WORD + " INDEX task/TASK_DESCRIPTION[, DUE_DATE][, STATUS]\n\n"
+        + "  " + COMMAND_WORD + " MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE][, STATUS]\n\n"
         + "Parameters:\n"
         + "  INDEX            - A positive integer indicating the person's order in the list.\n"
         + "  task/            - Task description (required).\n"
-        + "  DUE_DATE         - (Optional) Format: yyyy-MM-dd HH:mm\n"
-        + "  STATUS           - (Optional) 'yet to start', 'in progress', 'completed'\n\n"
+        + "  DUE_DATE         - Format: yyyy-MM-dd HH:mm (optional) \n"
+        + "  STATUS           - 'yet to start', 'in progress', 'completed' (optional) \n\n"
         + "Examples:\n"
         + "  " + COMMAND_WORD + " 1 task/Submit report, 2025-12-31 23:59, yet to start\n"
         + "  " + COMMAND_WORD + " 2 task/Buy groceries";
@@ -76,7 +76,7 @@ public class TaskCommand extends Command {
     private Person getPersonFromList(Model model) throws CommandException {
         List<Person> personList = model.getFilteredPersonList();
         if (index.getZeroBased() >= personList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
         return personList.get(index.getZeroBased());
     }
