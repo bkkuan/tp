@@ -51,7 +51,7 @@ public class DeleteTaskCommandTest {
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
         Index outOfBoundPersonIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX,
                 outOfBoundPersonIndex.getOneBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 outOfBoundPersonIndex,

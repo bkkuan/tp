@@ -18,16 +18,13 @@ public class TaskCommandParser implements Parser<TaskCommand> {
 
     @Override
     public TaskCommand parse(String args) throws ParseException {
-        // Manually tokenize args, ignoring the ArgumentMultimap
         String trimmedArgs = args.trim();
         String[] split = trimmedArgs.split(" ", 2);
 
-        // Ensure there are at least two parts: index and task description
         if (split.length < 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
         }
 
-        // Parse the index part
         Index index;
         try {
             index = ParserUtil.parseIndex(split[0]);
@@ -36,25 +33,20 @@ public class TaskCommandParser implements Parser<TaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE), pe);
         }
 
-        // Extract task description after the first space
         String taskString = split[1].trim();
 
-        // Manually handle multiple "task/" occurrences, treating only the first as a delimiter
         int taskPrefixIndex = taskString.indexOf("task/");
         if (taskPrefixIndex != -1) {
             taskString = taskString.substring(taskPrefixIndex + "task/".length()).trim();
         }
 
-        // If the task description is empty after trimming, throw an error
         if (taskString.isEmpty()) {
             throw new ParseException(MESSAGE_EMPTY_TASK_DESC);
         }
 
-        // Log and parse the task string (lowercase for consistency)
         logger.info("Task string: " + taskString);
         Task task = ParserUtil.parseTask(taskString.toLowerCase());
 
-        // Return the new TaskCommand
         return new TaskCommand(index, task);
     }
 }

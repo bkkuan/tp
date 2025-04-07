@@ -44,7 +44,7 @@ public class ListMemberTasksCommandTest {
         ListMemberTasksCommand command = new ListMemberTasksCommand(Index.fromOneBased(outOfBoundIndex));
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> command.execute(model));
+                Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX, () -> command.execute(model));
     }
 
     @Test

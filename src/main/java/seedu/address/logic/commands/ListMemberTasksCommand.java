@@ -16,7 +16,7 @@ public class ListMemberTasksCommand extends Command {
     public static final String COMMAND_WORD = "listtasks";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all tasks for the specified person.\n"
-            + "Parameters: PERSON_INDEX (must be a positive integer)\n"
+            + "Parameters: MEMBER_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index index;
@@ -30,7 +30,7 @@ public class ListMemberTasksCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
 
         Person person = lastShownList.get(index.getZeroBased());

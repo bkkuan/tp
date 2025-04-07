@@ -6,9 +6,6 @@
 
 # TeamScape User Guide
 
-
-TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
-
 Are you a manager of small teams looking to record tasks remotely? Look no further, presenting to you... TEAMSCAPE
 
 TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
@@ -110,10 +107,9 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`
+* Task Status can only take on one of the following: `yet to start`, `in progress`, `completed`.
 
-* For months with varying numbers of days, if the user enters a date that exceeds the valid number of days for that month, the date will be adjusted to the actual last day of the month. The user will be notified with the adjusted date displayed on the GUI.
-
+* For months with varying numbers of days, if the use enter a date that exceeds the last day of the month (but <= 31), the system will automatically adjust the date to the last valid day of the month. This adjusted date will be displayed in the success message on the GUI. However, if the user enters a day that exceeds the valid range (e.g., a day beyond 31), the date will be considered invalid.
 
 
 ### Viewing help : `help`
@@ -263,11 +259,12 @@ Examples:
 
 Update a specific task of a member.
 
-You may update the description, due date, and/or status.
+You may update the description, due date, and/or status. 
 
 Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
 
 **Note:**
+- There must be at least one field that is non-empty.
 - Task parameters must be separated by commas (`,`).
 - Task order matters, from top to bottom:
     - **Description** _(if any)_
