@@ -159,7 +159,7 @@ Format: `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE[, TASK_STATUS]`
 and then status (if any).
 - There can only exist one task with a unique task description.
 In other words, another task with the same description cannot be added.
-- There can only exist one `task/` prefix for each TaskCommand to be added.
+- Multiple `task/` inputs are allowed in the description, but only the first one is treated as the command prefix to add a new task. In other words, everything after the first `task/` is considered part of the description.
 - If only one field is provided and it matches a valid task status (e.g. `completed`) or due date format (e.g. `2025-07-12 12:30`)
 , it will be interpreted strictly as such. Ensure the correct order of parameters to avoid misinterpretation.
 
