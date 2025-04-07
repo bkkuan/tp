@@ -35,6 +35,18 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                     PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_TASK);
 
+        System.out.println(argMultimap.getSize());
+        System.out.println(argMultimap.getAllValues(PREFIX_TASK));
+        if (argMultimap.getSize() != 2) {
+            throw new ParseException(String.format("Only 1 type of prefix allowed at once!", FindCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1 
+            || argMultimap.getAllValues(PREFIX_TAG).size() > 1 
+            || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
+            throw new ParseException(String.format("Only one instance of each prefix is allowed!", FindCommand.MESSAGE_USAGE));
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Name placeHolderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get().trim());
@@ -64,9 +76,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             System.out.println(tasksToFindOptional);
             if (!tasksToFindOptional.isPresent()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
+            };
             assert tasksToFindOptional.isPresent() : "Should be able to get tasks";
             String tasksToFind = tasksToFindOptional.get().trim();
+            System.out.println(tasksToFind);
             String[] taskKeywords = tasksToFind.trim().split("\\s+");
             List<String> arr = Arrays.asList(taskKeywords);
             return new FindCommand(new TasksInKeywordsPredicate(arr));
