@@ -658,7 +658,7 @@ Based on the latest implementation of TeamScape:
 
 ### Glossary
 
-- **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`). 
+- **CLI**: Command Line Interface. A text-based way to interact with the app (e.g., `add n/John`).
 - **Mainstream OS**: Windows, Linux, Unix, macOS.
 - **Private contact detail**: A contact detail not meant to be shared (e.g., personal phone number).
 - **Task**: A unit of work assigned to a team member, which can have subtasks and deadlines.
@@ -812,7 +812,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Test case: `deltask 1 0` <br>
 **Expected**:
-   - No task deleted. 
+   - No task deleted.
    - Error about invalid index.
 
 ### Updating task for a member
