@@ -37,7 +37,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         System.out.println(argMultimap.getSize());
         System.out.println(argMultimap.getAllValues(PREFIX_TASK));
-        if (argMultimap.getSize() != 2) {
+        if (argMultimap.getSize() > 2) {
             throw new ParseException(String.format("Only 1 type of prefix allowed at once!", FindCommand.MESSAGE_USAGE));
         }
 
@@ -45,6 +45,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             || argMultimap.getAllValues(PREFIX_TAG).size() > 1 
             || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
             throw new ParseException(String.format("Only one instance of each prefix is allowed!", FindCommand.MESSAGE_USAGE));
+        }
+
+        if (argMultimap.getAllValues(PREFIX_NAME).size() == 0
+            || argMultimap.getAllValues(PREFIX_TAG).size() == 0 
+            || argMultimap.getAllValues(PREFIX_TASK).size() == 0) {
+            throw new ParseException(String.format("Keywords field should not be blank!", FindCommand.MESSAGE_USAGE));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
