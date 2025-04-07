@@ -90,6 +90,8 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 
 **Notes about the command format:**<br>
 
+* All commands word input are case-insensitive
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -301,7 +303,6 @@ Format: `find n/ KEYWORD [MORE_KEYWORDS]`
 
 Finds members whose names contain any of the given keywords.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
@@ -351,7 +352,6 @@ Example Usage:
 Shows a summary of all tasks and their completion statuses. 
 
 * Users are associated with their tasks under their status
-* report command is case-insensitive
 * The report is divided into three sections: ‘Yet to Start’, ‘In Progress’, and ‘Completed’
 * The number in parentheses next to each task status represents how many member have tasks in that status.
 * Under each task status, the names of the member are listed, followed by their assigned tasks in parentheses
