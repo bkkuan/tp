@@ -11,7 +11,7 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
 
 Are you a manager of small teams looking to record tasks remotely? Look no further, presenting to you... TEAMSCAPE
 
-TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3. 
+TeamScape is a **desktop app for managing contacts and the tasks under it, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast and confident to remember command format, TeamScape can get your contact/task management tasks done faster than traditional GUI apps. Adopted from AB3.
 
 ### Product scope
 
