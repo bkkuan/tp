@@ -16,9 +16,9 @@ There are two ways to run the test suite:
 
 ### Method 1: Using IntelliJ (JUnit Runner)
 
-- To run all tests:  
+- To run all tests:
   Right-click on `src/test/java` → `Run 'All Tests'`
-- To run specific tests:  
+- To run specific tests:
   Right-click on a test **class**, **method**, or **package** → `Run 'XYZ'`
 
 ### Method 2: Using Gradle
@@ -27,7 +27,7 @@ There are two ways to run the test suite:
 - On macOS/Linux: `./gradlew clean test`
 
 <box type="info" seamless>
-💡 Need help with Gradle?  
+💡 Need help with Gradle?
 Check the [Gradle Tutorial](https://se-education.org/guides/tutorials/gradle.html) from se-edu.
 </box>
 
