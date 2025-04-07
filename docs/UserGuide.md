@@ -378,8 +378,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd member in the address book.
-* `find n/ Betsy` followed by `delete 1` deletes the 1st member in the results of the `find` command.
+* type `list` then enter, then command `delete 2` deletes the 2nd member in the address book.
+* type `find n/ Betsy` then enter, then command `delete 1` deletes the 1st member in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
