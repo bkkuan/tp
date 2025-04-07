@@ -551,12 +551,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case resumes at step 2.
 
-**Use case: UC10 Mark the task as completed, in progress, or yet to start**
+**Use case: UC10 Update the task as completed, in progress, or yet to start**
 
 **MSS**
 
 1.  Manager <ins>list tasks (UC2)</ins>.
-2.  Manager requests to mark a task as completed, in progress, or yet to start.
+2.  Manager requests to update a task as completed, in progress, or yet to start.
 3.  TeamScape mark the task by the given status.
 
     Use case ends.

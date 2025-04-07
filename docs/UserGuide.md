@@ -232,7 +232,7 @@ Format: `listtasks INDEX`
 
 Examples:
 * `listtasks 2` list the tasks the 2nd person in the address book/displayed person list.
-* Type `find n/ Alex` then enter, followed by `listtasks 1` lists the tasks of 1st person in the results of the `find` command.
+* Input `find n/ Alex` and enter, then type `listtasks 1` to list the tasks of 1st person in the results of the `find` command.
 
 Example results for member without task:
 * ![listtasks for member without a task](images/listtasksAlex.png)
@@ -378,8 +378,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* type `list` then enter, then command `delete 2` deletes the 2nd member in the address book.
-* type `find n/ Betsy` then enter, then command `delete 1` deletes the 1st member in the results of the `find` command.
+* Input `list` and press enter. Then type `delete 2` deletes the 2nd member in the address book.
+* Input `find n/ Betsy` and press enter. then type `delete 1` deletes the 1st member in the results of the `find` command.
 
 
 ### Clearing all entries : `clear`
