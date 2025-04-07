@@ -70,8 +70,7 @@ public class TaskCommandParserTest {
     @Test
     public void parse_missingIndex_failure() {
         String userInput = "task/Do homework, 2025-12-31 23:59, yet to start";
-        assertParseFailure(parser, userInput,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
     }
 
     @Test
