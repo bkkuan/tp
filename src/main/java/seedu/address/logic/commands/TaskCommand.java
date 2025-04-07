@@ -75,7 +75,7 @@ public class TaskCommand extends Command {
 
     private Person getPersonFromList(Model model) throws CommandException {
         List<Person> personList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= personList.size()) {
+        if (index.getZeroBased() < 0 || index.getZeroBased() >= personList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
         }
         return personList.get(index.getZeroBased());

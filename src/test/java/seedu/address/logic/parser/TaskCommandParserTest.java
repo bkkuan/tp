@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_TASK_DESC;
 import static seedu.address.logic.Messages.MESSAGE_INCORRECT_DATE_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INCORRECT_TASK_STATUS;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TASK_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -69,15 +69,13 @@ public class TaskCommandParserTest {
     @Test
     public void parse_missingIndex_failure() {
         String userInput = "task/Do homework, 2025-12-31 23:59, yet to start";
-        assertParseFailure(parser, userInput,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidIndex_failure() {
         String userInput = "zero task/Do homework, 2025-12-31 23:59, yet to start";
-        assertParseFailure(parser, userInput,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX);
     }
 
     @Test
