@@ -342,10 +342,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `* * *`  | team manager | add a member, his/her position, department, roles                                            | start tracking my team member progress.                                          |
 | `* * *`  | team manager | remove inactive team members                                                                 | keep the team database clean and up-to-date.                                     |
-| `* * *`  | team manager | add a task/subtask under a member                                                            | ensure clarity in responsibilities.                                              |
+| `* * *`  | team manager | add a task under a member                                                                    | ensure clarity in responsibilities.                                              |
 | `* * *`  | team manager | be able to mark the task as completed/in-progress/yet-to-start                               | check the status of my tasks.                                                    |
 | `* * *`  | team manager | set due dates for the tasks                                                                  | know what time each task need to be completed by.                                |
-| `* * *`  | team manager | receive a summary of task statuses                                                           | stay informed.                                                                   |
+| `* * *`  | team manager | receive a summary report of task statuses                                                    | stay informed.                                                                   |
 | `* * *`  | team manager | quickly search for members’ contacts by name                                                 | call them easily if there is an urgency.                                         |
 | `* * *`  | user         | access interactive tutorials or help pop-ups                                                 | quickly learn how to use the app’s features effectively.                         |
 | `* *`    | team manager | identify gaps in skills required for the Task and the members/departments assigned to it     | assign more people to the Task to fill up the skill gap.                         |
@@ -357,20 +357,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team manager | set priority levels for tasks                                                                | I knows which task need immediate attention and which task can be handled later. |
 | `* *`    | team manager | set task dependencies (e.g. Task B can only start after Task A is completed)                 | know if the task have been completed in the right order.                         |
 | `* *`    | team manager | see the task completion percentages (no. of subtasks completed out of total no. of subtasks) | easily gauge progress and identify any bottlenecks.                              |
-| `* *`    | team manager | bulk import member details via a CSV file                                                    | save time when adding multiple members.                                          |
 | `* *`    | team manager | generate a report showing the team's overall task completion rate                            | present it to stakeholders.                                                      |
-| `* *`    | team manager | color-code tasks by priority level                                                           | easily differentiate between critical and low-priority tasks.                    |
 | `* *`    | team manager | set reminders for upcoming deadlines                                                         | ensure my team stays on track and meets important deadlines.                     |
-| `* *`    | team manager | receive notifications when a task is overdue                                                 | address delays immediately.                                                      |
 | `* *`    | team manager | quickly search for team members by their progress completion state                           | identify and help those who are lagging behind.                                  |
-| `*`      | team manager | add a task/subtask to a department                                                           | mass assign tasks to members in that department.                                 |
-| `*`      | team manager | create subtasks for a  task                                                                  | break down large tasks into smaller, manageable pieces.                          |
-| `*`      | team manager | track the hours worked by each member on tasks                                               | analyze productivity and effort.                                                 |
-| `*`      | team manager | see statistics comparing the progress of different departments/members                       | identify high-performing department/member.                                      |
-| `*`      | user         | customize themes and layouts                                                                 | the app feels personal and meets my visual preferences.                          |
-| `*`      | user         | take an interactive app tour                                                                 | learn features without external help.                                            |
-| `*`      | user         | undo accidental deletions                                                                    | critical data isn’t lost.                                                        |
-| `*`      | user         | enable keyboard shortcuts                                                                    | frequent actions (e.g., Ctrl+S to save) are faster.                              |
+| `*`      | team manager | add a task to a department                                                                   | mass assign tasks to members in that department.                                 |
+| `*`      | team manager | create subtasks for a  task                                                                  | break down large tasks into smaller, manageable pieces.                          
 
 *{More to be added}*
 
@@ -786,7 +777,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Other incorrect commands to try: `setduedate 1 taskint/1 due/2025-10-10`, `setduedate 1 /taskint 1 due/2025-10-10 23:59` <br>
 **Expected**:
-   - Error message similar to that of point 2. 
+   - Error message shown. 
 
 ### Listing tasks assigned to a member
 
