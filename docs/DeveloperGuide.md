@@ -786,7 +786,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Other incorrect commands to try: `setduedate 1 taskint/1 due/2025-10-10`, `setduedate 1 /taskint 1 due/2025-10-10 23:59` <br>
 **Expected**:
-   - Error message similar to that of point 2. 
+   - Error message shown. 
 
 ### Listing tasks assigned to a member
 
