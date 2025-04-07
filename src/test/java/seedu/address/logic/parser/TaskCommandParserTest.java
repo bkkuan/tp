@@ -58,8 +58,8 @@ public class TaskCommandParserTest {
 
     @Test
     public void parse_multipleTaskPrefixes_success() {
-        String userInput = "1 task/Complete task/Buy groceries, 2025-12-31 23:59, yet to start task";
-        Task expectedTask = new Task("buy groceries", TaskStatus.YET_TO_START,
+        String userInput = "1 task/Complete task/Buy groceries, 2025-12-31 23:59, yet to start";
+        Task expectedTask = new Task("complete task/buy groceries", TaskStatus.YET_TO_START,
             LocalDateTime.of(2025, 12, 31, 23, 59));
         TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
 
