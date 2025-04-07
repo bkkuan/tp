@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_TASK_DESC;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX;
 
 import java.util.logging.Logger;
 
@@ -30,7 +31,7 @@ public class TaskCommandParser implements Parser<TaskCommand> {
             index = ParserUtil.parseIndex(split[0]);
             logger.info("Parsed index: " + index.getOneBased());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX, pe);
         }
 
         String taskString = split[1].trim();
