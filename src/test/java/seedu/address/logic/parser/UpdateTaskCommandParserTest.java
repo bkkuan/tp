@@ -155,6 +155,7 @@ public class UpdateTaskCommandParserTest {
     @Test
     public void parse_statusUsedAsDescription_failure() {
         assertParseFailure(parser, "1 2 completed, 2025-12-31 23:59",
-            "Cannot update other fields when only updating task status. Use only: TASK_STATUS");
+            "Cannot update other fields other than the first one when only updating task status.\n"
+                + "Use only: TASK_STATUS input for the first and only field.");
     }
 }
