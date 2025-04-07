@@ -34,7 +34,7 @@ public class TaskCommandParser implements Parser<TaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
         }
 
-        String taskString = argMultimap.getValue(PREFIX_TASK).orElse("").trim();
+        String taskString = argMultimap.getValue(PREFIX_TASK).orElse("").trim().toLowerCase();
         if (taskString.isEmpty()) {
             throw new ParseException(MESSAGE_EMPTY_TASK_DESC);
         }
