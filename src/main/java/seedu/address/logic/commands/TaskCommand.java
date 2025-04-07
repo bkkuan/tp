@@ -23,7 +23,7 @@ public class TaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the specified team member.\n"
         + "Usage:\n"
-        + "  " + COMMAND_WORD + " INDEX task/TASK_DESCRIPTION[, DUE_DATE][, STATUS]\n\n"
+        + "  " + COMMAND_WORD + " MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE][, STATUS]\n\n"
         + "Parameters:\n"
         + "  INDEX            - A positive integer indicating the person's order in the list.\n"
         + "  task/            - Task description (required).\n"

@@ -39,7 +39,7 @@ TeamScape is a **desktop app for managing contacts and the tasks under it, optim
     - [Setting Due Date for a Task](#setting-due-date-for-a-task--setduedate)
     - [Listing Tasks Assigned to a Member](#listing-tasks-assigned-to-a-member--listtasks)
     - [Deleting a Task Under a Member](#deleting-a-task-under-a-member--deltask)
-    - [Updating Status for a Task](#updating-a-task-under-a-member--updatetask)
+    - [Updating a Task Under a Member](#updating-a-task-under-a-member--updatetask)
     - [Locating Members by Name, Tags, or Tasks](#locating-members-by-name-tags-or-tasks-find)
     - [Generate Task Status Report](#generate-task-status-report--report)
     - [Deleting a Member](#deleting-a-member--delete)
@@ -260,7 +260,7 @@ Examples:
 
 Update a specific task of a member.
 
-You may update the description, due date, and/or status. 
+You may update the description, due date, and/or status.
 
 Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
 
@@ -434,21 +434,21 @@ Furthermore, certain edits can cause the TeamScape to behave in unexpected ways 
 
 ## Command Summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                                                      |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                                                                                                                     |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**          | `add n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `add n/John Doe p/98765432 e/johnd@example.com tele/@john pos/student a/John street task/barbeque, 2025-05-28 14:00, yet to start` |
-| **Clear**        | `clear`                                                                                                                                                                                                                                                               |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
-| **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                  |
-| **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                      |
-| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`         
-| **Find (Task)**   | `find task/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task/ presentation`                                                                                                                                                                                        |
-| **Add Task**     | `task INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                                       |
-| **Delete task**  | `deltask MEMBER_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                             |
-| **Update Task**  | `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                             |
-| **List**         | `list`                                                                                                                                                                                                                                                                |
-| **List Tasks**   | `listtasks INDEX`<br> e.g., `listtasks 2`                                                                                                                                                                                                                             |
-| **Set Due Date** | `setduedate MEMBER_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`<br> e.g., `setduedate 2 taskint/1 due/2025-10-10 23:59`                                                                                                                                             |
-| **Report**       | `report`                                                                                                                                                                                                                                                              |
-| **Help**         | `help`                                                                                                                                                                                                                                                                |
-| **Exit**         | `exit`                                                                                                                                                                                                                                                                |
+| **Clear**        | `clear`                                                                                                                                                                                                                                                              |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                  |
+| **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                 |
+| **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                     |
+| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`                                                                                                                                                                                             |
+| **Find (Task)**   | `find task/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task/ presentation`                                                                                                                                                                                             |
+| **Add Task**     | `task MEMBER_INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                               |
+| **Delete task**  | `deltask MEMBER_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                            |
+| **Update Task**  | `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                            |
+| **List**         | `list`                                                                                                                                                                                                                                                               |
+| **List Tasks**   | `listtasks INDEX`<br> e.g., `listtasks 2`                                                                                                                                                                                                                            |
+| **Set Due Date** | `setduedate MEMBER_INDEX taskint/TASK_INDEX due/yyyy-mm-dd hh:mm`<br> e.g., `setduedate 2 taskint/1 due/2025-10-10 23:59`                                                                                                                                            |
+| **Report**       | `report`                                                                                                                                                                                                                                                             |
+| **Help**         | `help`                                                                                                                                                                                                                                                               |
+| **Exit**         | `exit`                                                                                                                                                                                                                                                               |

@@ -833,7 +833,7 @@ testers are expected to do more *exploratory* testing.
 3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
    **Expected**:
     - No change to the specified task
-    - Error message shows specific error.
+    - Error message shows specified error.
 
 
 ### Finding members
