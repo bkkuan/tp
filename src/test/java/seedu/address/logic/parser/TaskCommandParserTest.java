@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_EMPTY_TASK_DESC;
 import static seedu.address.logic.Messages.MESSAGE_INCORRECT_DATE_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INCORRECT_TASK_STATUS;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_MEMBER_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_TASK_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
