@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -99,6 +100,22 @@ public class PersonBuilder {
      */
     public PersonBuilder withTasks(String... tasks) {
         this.tasks = SampleDataUtil.getTask(tasks);
+        return this;
+    }
+
+    /**
+     * Sets the {@code tasks} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withTasks(Task... tasks) {
+        this.tasks = Arrays.asList(tasks);
+        return this;
+    }
+
+    /**
+     * Clears all tasks from the {@code Person} being built.
+     */
+    public PersonBuilder withoutTasks() {
+        this.tasks = new ArrayList<>();
         return this;
     }
 
