@@ -6,15 +6,15 @@
 
 # TeamScape Developer Guide
 
-## Table of Contents  
+## Table of Contents
 - [Acknowledgements](#acknowledgements)
-- [Setting up, getting started](#setting-up-getting-started)  
+- [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
   - [Architecture](#architecture)
   - [UI component](#ui-component)
   - [Logic component](#logic-component)
   - [Model component](#model-component)
-  - [Storage component](#storage-component)  
+  - [Storage component](#storage-component)
   - [Common classes](#common-classes)
 - [Implementation](#implementation)
   - [Proposed Undo/redo feature](#proposed-undoredo-feature)
@@ -736,7 +736,7 @@ testers are expected to do more *exploratory* testing.
 
 3. Test case: `task 0 task/Invalid task` <br>
 **Expected**:
-   - No task added. 
+   - No task added.
    - Error shown for invalid index.
 
 ### Editing a member
@@ -816,12 +816,12 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `updatetask 1 1 completed` <br>
 **Expected**:
-   - First task of first member updated as completed from its previous state. 
+   - First task of first member updated as completed from its previous state.
    - Successful message confirms update and shows new task details.
 
 2. Test case: `updatetask 3 2 project milestone 1 sprint, 2025-05-12 10:00, in progress` <br>
 **Expected**:
-   - Third task of second person updated as completed from its previous state. 
+   - Third task of second person updated as completed from its previous state.
    - Successful message to confirm update and shows new task details.
 
 3. Test case: `updatetask 3 2 project milestone 1 sprint, invalidDateorTaskStatus` <br>
@@ -837,7 +837,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case: `find n/ john` <br>
 **Expected**:
-   - Members with "john" in name displayed. 
+   - Members with "john" in name displayed.
    - Status shows number of matches.
 
 2. Test case: `find t/ friend` <br>

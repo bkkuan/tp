@@ -286,13 +286,13 @@ input standardisation.
 **Examples: (all possible combinations)**
 - `updatetask 1 2 Fix backend bug`
   Updates only the task description.
-- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00` 
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00`
   Updates the task description and due date.
 - `updatetask 1 2 2025-12-12 23:59, completed`
   Updates the due date and status.
 - `updatetask 1 2 completed`
   Updates only the task status.
-- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00, completed` 
+- `updatetask 1 2 Fix backend bug, 2025-10-31 14:00, completed`
   Updates all three fields.
 
 **Extended Example**:

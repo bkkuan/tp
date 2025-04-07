@@ -10,7 +10,7 @@ title: "TeamScape"
 
 ![Ui](images/Ui.png)
 
-**TeamScape** is a desktop application for managing your team members, their contact details, and their tasks. 
+**TeamScape** is a desktop application for managing your team members, their contact details, and their tasks.
 It is built for team managers who prefer a fast, CLI-first workflow with full offline functionality.
 
 ---
