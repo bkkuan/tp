@@ -38,6 +38,7 @@ public class UpdateTaskCommand extends Command {
         + "  STATUS       - (Optional) New task status: 'yet to start', 'in progress', 'completed'.\n"
         + "\n"
         + "Notes:\n"
+        + "  • At least one field cannot be empty.\n"
         + "  • Use commas (,) to separate multiple fields.\n"
         + "  • Order of parameters matters.\n"
         + "\n"

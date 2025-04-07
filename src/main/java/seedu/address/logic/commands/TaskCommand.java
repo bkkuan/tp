@@ -27,8 +27,8 @@ public class TaskCommand extends Command {
         + "Parameters:\n"
         + "  INDEX            - A positive integer indicating the person's order in the list.\n"
         + "  task/            - Task description (required).\n"
-        + "  DUE_DATE         - (Optional) Format: yyyy-MM-dd HH:mm\n"
-        + "  STATUS           - (Optional) 'yet to start', 'in progress', 'completed'\n\n"
+        + "  DUE_DATE         - Format: yyyy-MM-dd HH:mm (optional) \n"
+        + "  STATUS           - 'yet to start', 'in progress', 'completed' (optional) \n\n"
         + "Examples:\n"
         + "  " + COMMAND_WORD + " 1 task/Submit report, 2025-12-31 23:59, yet to start\n"
         + "  " + COMMAND_WORD + " 2 task/Buy groceries";
