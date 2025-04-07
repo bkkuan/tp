@@ -57,6 +57,16 @@ public class TaskCommandParserTest {
     }
 
     @Test
+    public void parse_multipleTaskPrefixes_success() {
+        String userInput = "1 task/Complete task/Buy groceries, 2025-12-31 23:59, yet to start task";
+        Task expectedTask = new Task("buy groceries", TaskStatus.YET_TO_START,
+            LocalDateTime.of(2025, 12, 31, 23, 59));
+        TaskCommand expectedCommand = new TaskCommand(Index.fromOneBased(1), expectedTask);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
     public void parse_missingIndex_failure() {
         String userInput = "task/Do homework, 2025-12-31 23:59, yet to start";
         assertParseFailure(parser, userInput,
