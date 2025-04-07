@@ -333,18 +333,29 @@ Finds members whose task description contain any of the given keywords.
 Example Usage:
 * `find task/ barbeque` returns all members with task descriptions containing the word 'bbq'.
   ![result for 'find task/ barbeque'](images/findbbqResult.png)
+  Finding members by a single condition (limited to name, tags, or tasks):
 
-Finding members by multiple conditions (limited to name, tags and tasks):
+Usage Notes:
+Format: `find PREFIX/KEYWORD`
 
-Format: `find n/ KEYWORD [MORE_KEYWORDS] t/ KEYWORD [MORE_KEYWORDS] task/ KEYWORD [MORE_KEYWORDS]`
+This finds all members who meet the condition specified by the single prefix and keyword. Only one prefix (`n/`, `t/`, or `task/`) can be used at a time, and the keyword cannot be blank.
 
-This finds all members who meet all the conditions in the specified name, tags, and task fields.
+**Important Notes:**
+- You cannot use multiple prefixes in the same command.
+- You cannot repeat the same prefix multiple times.
+- The keyword must not be empty.
 
-Intuitively, you can think about this as an 'AND' operation. For example, if you want to find all interns that are assigned with the barbeque task, you can use the example command shown below.
+**Correct Examples:**
+- `find n/John` finds all members whose names contain "John."
+- `find t/intern` finds all members tagged as "intern."
+- `find task/bbq` finds all members with task descriptions containing "bbq."
 
-Example Usage:
-* `find t/ intern task/ bbq` returns all members with tags interns AND task descriptions containing the word 'bbq'.
-  ![result for 'find t/ intern task/ bbq'](images/findInternBBQResult.png)
+**Incorrect Examples:**
+- `find n/John t/intern` (Error: Multiple prefixes used.)
+- `find n/John n/Doe` (Error: Repeated prefix.)
+- `find n/` (Error: Keyword is blank.)
+- `find task/` (Error: Keyword is blank.)
+- `find` (Error: No prefix or keyword provided.)
 
 
 ### Generate Task Status Report : `report`
@@ -435,7 +446,8 @@ Furthermore, certain edits can cause the TeamScape to behave in unexpected ways 
 | **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                   |
 | **Edit**         | `edit INDEX n/NAME p/PHONE_NUMBER e/EMAIL tele/TELEGRAM pos/POSITION a/ADDRESS [t/TAG]…​ [s/SKILL]…​ [o/OTHER]…​ [task/TASK]…​`<br> e.g., `edit 2 n/Betsy Crower t/`                                                                                                  |
 | **Find (Name)**  | `find n/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find n/ alex david`                                                                                                                                                                                                      |
-| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`                                                                                                                                                                                              |
+| **Find (Tag)**   | `find t/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/ colleagues friends`         
+| **Find (Task)**   | `find task/ KEYWORD [MORE_KEYWORDS]`<br> e.g., `find task/ presentation`                                                                                                                                                                                        |
 | **Add Task**     | `task INDEX task/TASK_DESCRIPTION[, DUE_DATE, TASK_STATUS]` <br> e.g., `task 3 task/Book venue`                                                                                                                                                                       |
 | **Delete task**  | `deltask MEMBER_INDEX TASK_INDEX`<br> e.g., `deltask 3 2`                                                                                                                                                                                                             |
 | **Update Task**  | `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`<br> e.g., `updatetask 1 1 2025-12-31 23:59, completed`                                                                                                                             |
