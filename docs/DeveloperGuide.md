@@ -378,7 +378,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
@@ -391,7 +391,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The task list is empty.
+* 1a. The task list is empty.
 
   Use case ends.
 
@@ -407,9 +407,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. TeamScape shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -425,15 +425,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. TeamScape shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. Edit command received invalid inputs.
+* 2b. The given inputs contain invalid inputs.
 
-    * 3b1. TeamScape shows an error message
+    * 2b1. TeamScape shows an error message
 
       Use case resumes at step 2.
 
@@ -448,9 +448,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The details provided are invalid.
+* 1a. The details provided are invalid.
 
-    * 2a1. TeamScape shows an error message.
+    * 1a1. TeamScape shows an error message.
 
       Use case resumes at step 1.
 
@@ -467,15 +467,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 4a. The given index for either task is invalid.
+* 3a. The given index for either task is invalid.
 
-    * 4a1. TeamScape shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-* 4b. The given index for either member is invalid.
+* 3b. The given index for either member is invalid.
 
-    * 4b1. TeamScape shows an error message.
+    * 3b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -492,15 +492,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 4a. The given index for either task is invalid.
+* 3a. The given index for either task is invalid.
 
-    * 4a1. TeamScape shows an error message.
+    * 3a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-* 4b. The given index for either member is invalid.
+* 3b. The given index for either member is invalid.
 
-    * 4b1. TeamScape shows an error message.
+    * 3b1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -515,9 +515,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Invalid task input.
+* 1a. Invalid task input.
 
-    * 2a1. TeamScape shows an error message.
+    * 1a1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -533,39 +533,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given task index is invalid.
+* 2a. The given task index is invalid.
 
-    * 3a1. TeamScape shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. The due date format is invalid.
-
-    * 3b1. TeamScape shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: UC10 Mark the task as completed, in progress, or yet to start**
+* 2b. The due date format is invalid.
+
+    * 2b1. TeamScape shows an error message.
+
+      Use case resumes at step 2.
+
+* 2c. The due date is in the past.
+
+    * 2b1. TeamScape shows an error message.
+
+        Use case resumes at step 2.
+
+**Use case: UC10 Update the task as completed, in progress, or yet to start**
 
 **MSS**
 
 1.  Manager <ins>list tasks (UC2)</ins>.
-2.  Manager requests to set a due date for a task.
-3.  TeamScape set a due date for a task.
+2.  Manager requests to update a task as completed, in progress, or yet to start.
+3.  TeamScape mark the task by the given status.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given task index is invalid.
+* 2a. The given task index is invalid.
 
-    * 3a1. TeamScape shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
-* 3b. The due date format is invalid.
+* 2a. The status is invalid.
 
-    * 3b1. TeamScape shows an error message.
+    * 2a1. TeamScape shows an error message.
 
       Use case resumes at step 2.
 
@@ -580,13 +586,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Empty member list
-    * 2a1. TeamScape shows an error message.
+* 1a. Empty member list
+    * 1a1. TeamScape shows an error message.
 
       Use case ends.
 
-* 2b. No member of the name found.
-    * 2b1. TeamScape shows an error message.
+* 1b. No member of the name found.
+    * 1b1. TeamScape shows an error message.
 
       Use case ends.
 
@@ -601,8 +607,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. Empty task list
-    * 2a1. TeamScape shows a No Task Found message.
+* 1a. Empty task list
+    * 1a1. TeamScape shows a No Task Found message.
 
       Use case ends.
 
