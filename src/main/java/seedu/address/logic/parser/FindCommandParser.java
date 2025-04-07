@@ -47,13 +47,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("Only one instance of each prefix is allowed!");
         }
 
-        if (argMultimap.getAllValues(PREFIX_NAME).size() == 0
-            || argMultimap.getAllValues(PREFIX_TAG).size() == 0
-            || argMultimap.getAllValues(PREFIX_TASK).size() == 0) {
-            throw new ParseException("Keywords field should not be blank!");
-        }
-
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            if (argMultimap.getAllValues(PREFIX_NAME).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Name placeHolderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get().trim());
             String names = placeHolderName.fullName;
@@ -63,6 +60,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            System.out.println(argMultimap.getAllValues(PREFIX_TAG).get(0));
+            if (argMultimap.getAllValues(PREFIX_TAG).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Optional<String> tagsToFindOptional = argMultimap.getValue(PREFIX_TAG);
             if (!tagsToFindOptional.isPresent()) {
@@ -76,6 +77,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_TASK)) {
+            if (argMultimap.getAllValues(PREFIX_TASK).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Optional<String> tasksToFindOptional = argMultimap.getValue(PREFIX_TASK);
             System.out.println("HERE");
