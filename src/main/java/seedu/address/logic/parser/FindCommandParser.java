@@ -35,7 +35,22 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                     PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_TASK);
 
+        System.out.println(argMultimap.getSize());
+        System.out.println(argMultimap.getAllValues(PREFIX_TASK));
+        if (argMultimap.getSize() > 2) {
+            throw new ParseException("Only 1 type of prefix allowed at once!");
+        }
+
+        if (argMultimap.getAllValues(PREFIX_NAME).size() > 1
+            || argMultimap.getAllValues(PREFIX_TAG).size() > 1
+            || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
+            throw new ParseException("Only one instance of each prefix is allowed!");
+        }
+
         if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            if (argMultimap.getAllValues(PREFIX_NAME).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Name placeHolderName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get().trim());
             String names = placeHolderName.fullName;
@@ -45,6 +60,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+            System.out.println(argMultimap.getAllValues(PREFIX_TAG).get(0));
+            if (argMultimap.getAllValues(PREFIX_TAG).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Optional<String> tagsToFindOptional = argMultimap.getValue(PREFIX_TAG);
             if (!tagsToFindOptional.isPresent()) {
@@ -58,22 +77,25 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_TASK)) {
+            if (argMultimap.getAllValues(PREFIX_TASK).get(0).trim().isEmpty()) {
+                throw new ParseException("Keywords field should not be blank!");
+            }
             argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
             Optional<String> tasksToFindOptional = argMultimap.getValue(PREFIX_TASK);
             System.out.println("HERE");
             System.out.println(tasksToFindOptional);
             if (!tasksToFindOptional.isPresent()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-            }
+            };
             assert tasksToFindOptional.isPresent() : "Should be able to get tasks";
             String tasksToFind = tasksToFindOptional.get().trim();
+            System.out.println(tasksToFind);
             String[] taskKeywords = tasksToFind.trim().split("\\s+");
             List<String> arr = Arrays.asList(taskKeywords);
             return new FindCommand(new TasksInKeywordsPredicate(arr));
         }
 
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-
     }
 
     /**
