@@ -7,7 +7,6 @@
 # TeamScape Developer Guide
 
 ## Table of Contents
-- [Acknowledgements](#acknowledgements)
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
   - [Architecture](#architecture)
