@@ -343,7 +343,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | team manager | add a member, his/her position, department, roles                                            | start tracking my team member progress.                                          |
 | `* * *`  | team manager | remove inactive team members                                                                 | keep the team database clean and up-to-date.                                     |
 | `* * *`  | team manager | add a task under a member                                                                    | ensure clarity in responsibilities.                                              |
-| `* * *`  | team manager | be able to mark the task as completed/in-progress/yet-to-start                               | check the status of my tasks.                                                    |
+| `* * *`  | team manager | be able to change the task as completed/in-progress/yet-to-start                             | check the status of my tasks.                                                    |
+| `* * *`  | team manager | update the task                                                                              | edit the content of my tasks.                                                    |
 | `* * *`  | team manager | set due dates for the tasks                                                                  | know what time each task need to be completed by.                                |
 | `* * *`  | team manager | receive a summary report of task statuses                                                    | stay informed.                                                                   |
 | `* * *`  | team manager | quickly search for members’ contacts by name                                                 | call them easily if there is an urgency.                                         |
@@ -874,18 +875,21 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a member
 
-1. Deleting a member while all members are being shown
+**Prerequisites:**
+- Deleting a member while all members are being shown
+- List all members using the `list` command. Multiple members in the list.
 
-   1. Prerequisites: List all members using the `list` command. Multiple members in the list.
+1. Test case: `delete 1`<br>
+**Expected**:
+   - First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      
+2. Test case: `delete 0`<br>
+**Expected**:
+   - No member is deleted. Error details shown in the status message. Status bar remains the same.
 
-   2. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   3. Test case: `delete 0`<br>
-      Expected: No member is deleted. Error details shown in the status message. Status bar remains the same.
-
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+3. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+**Expected:** 
+   - Similar to previous.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -900,6 +904,22 @@ Using of app, managers can assign multiple tasks under a specific member, check 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Planned Enhancements**
-* Tasks assigned to a member will only accept tasks that are actively being worked on.
-Tasks with a "completed" status and due in the past will not be allowed, as the task system is not intended to store records of completed tasks. Such records will be stored and managed elsewhere.
-* Since the Tasks feature is not designed to serve as a storage system, it should only accommodate a reasonable number of tasks, ideally between 5 to 10. Therefore, there is no need to label tasks on display with an index.
+
+### Tasks
+* Tasks assigned to a member will only accept tasks that are actively being worked on. Tasks with a "completed" status and due in the past will not be allowed, as the task system is not intended to store records of completed tasks. Such records will be stored and managed elsewhere.
+
+* Since the Tasks feature is not designed to serve as a storage system, it should only accommodate a reasonable number of tasks, ideally between 5 to 10.
+Therefore, there is no need to label tasks on display with an index.
+
+* Add a task to a department
+
+* Add skills required for a task
+
+* Identify gaps in skills required for a task and the members/departments assigned to it
+
+* Set task dependencies (e.g. Task B can only start after Task A)
+
+* Create subtasks for a task
+
+
+
