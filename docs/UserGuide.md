@@ -329,7 +329,7 @@ Finds members whose task description contain any of the given keywords.
 
 Example Usage:
 * `find task/ barbeque` returns all members with task descriptions containing the word 'bbq'.
-  ![result for 'find task/ barbeque'](images/findbbqResult.png)
+  ![result for 'find task/ barbeque'](images/findBarbeque.png)
 
 
 Usage Notes:
@@ -343,12 +343,12 @@ This finds all members who meet the condition specified by the single prefix and
 - The keyword must not be empty.
 
 **Correct Examples:**
-- `find n/John` finds all members whose names contain "John."
-- `find t/intern` finds all members tagged as "intern."
-- `find task/bbq` finds all members with task descriptions containing "bbq."
+- `find n/John` finds all members whose names contain "John".
+- `find t/friends` finds all members tagged as "friends".
+- `find task/barbeque` finds all members with task descriptions containing "barbeque".
 
 **Incorrect Examples:**
-- `find n/John t/intern` (Error: Multiple prefixes used.)
+- `find n/John t/friends` (Error: Multiple prefixes used.)
 - `find n/John n/Doe` (Error: Repeated prefix.)
 - `find n/` (Error: Keyword is blank.)
 - `find task/` (Error: Keyword is blank.)
