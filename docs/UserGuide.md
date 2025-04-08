@@ -262,12 +262,13 @@ Update a specific task of a member.
 
 You may update the description, due date, and/or status.
 
-Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, STATUS]`
+Format: `updatetask MEMBER_INDEX TASK_INDEX [TASK_DESCRIPTION][, DUE_DATE][, TASK_STATUS]`
 
 **Note:**
 - _`[ ]`_ signifies optional field.
 - There must be at least one field that is not empty.
 - Task parameters must be separated by commas (`,`).
+- Task Status can be one of: `yet to start`, `in progress`, `completed`.
 - Task order matters, from top to bottom:
     - **Description** _(if any)_
     - **Due Date** *(if any)* – Format: `yyyy-MM-dd HH:mm`
