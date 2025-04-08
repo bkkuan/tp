@@ -14,11 +14,17 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    public static final String MESSAGE_NO_MEMBERS = "No members in your book yet. Add them via:\n"
+            + AddCommand.MESSAGE_USAGE;
+
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (model.getFilteredPersonList().size() == 0) {
+            return new CommandResult(MESSAGE_NO_MEMBERS);
+        }
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
